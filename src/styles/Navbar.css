@@ -1,0 +1,77 @@
+.nav-container{
+    background:#ac9072
+ 
+}
+.nav{
+    width:95%;
+    margin: auto;
+}
+
+.nav-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.cartIcon{
+    width:20px;
+    mix-blend-mode: multiply;
+}
+
+
+
+.spa-logo{
+    color:green
+}
+
+.nav-title{
+    text-transform: uppercase;
+}
+
+.nav-links a{
+    text-decoration: none;
+    padding:10px;
+    color:#000;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+
+.nav-links a:hover{
+    color:blueviolet
+}
+
+.open-button{
+    display: none;
+    cursor: pointer;
+}
+
+
+@media(max-width:800px){
+    .open-button{
+        display:block
+    }
+
+
+
+    #hidden{
+        position: absolute;
+        top:80px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background:#ac9072;
+        width: 100%;
+        left:-0.1px;
+        padding-bottom:100px;
+    }
+
+    .nav-links a{
+            margin:5px;
+    }
+
+    .nav-links{
+        display: none;
+    }
+}
