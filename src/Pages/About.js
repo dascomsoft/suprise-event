@@ -15,7 +15,7 @@ const About = () => {
           <img src={portrait3} alt=""  className='portraitAbout'/>
           <div className="about-text">
             <h2 className="about-title"><span className="span-t">Enjoy</span> The Best <span className="span-title">Fast-Food</span> In The Region</h2>
-             <p>Lorem ipsum dolor, sit ametion consectetur adipisicing elit. Nam quae nemo obcaecati unde iure maiores molestiae aut officia ullam laudantium blanditiis et dolorem voluptates architecto doloribus deserunt, accusantium id hic excepturi earum dolorum adipisci optio saepe? Unde accusantium quasi ipsa.</p>
+             <p>Lorem ipsum dolor, sit ametion consectetur hi adipisicing elit. Nam quae nemo obcaecati unde iure maiores molestiae aut officia ullam laudantium blanditiis et dolorem voluptates architecto doloribus deserunt, accusantium id hic excepturi earum dolorum adipisci optio saepe? Unde accusantium quasi ipsa.</p>
              <Link to ="/Menu" className="about-link">Learn more</Link>
           </div>
         </div>
