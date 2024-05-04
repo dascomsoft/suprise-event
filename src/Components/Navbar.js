@@ -1,47 +1,66 @@
-import React, { useContext, useEffect, useState } from 'react';
-import {Link,useLocation} from "react-router-dom"
+import React, { useContext, useState } from 'react';
+import {Link} from "react-router-dom"
 import "../styles/Navbar.css"
-import cartIcon from "../assets/cart-icon.png"
 import { FoodBoxtContext } from '../Helpers/FoodBoxtContext';
+
 const Navbar = () => {
 
   const{foodBox} =useContext(FoodBoxtContext)
-  const[link,setLink] = useState(false)
 
-  const update =()=>{
-    setLink(!link)
-  }
 
-   const location =useLocation()
 
-   useEffect(()=>{
-    setLink(false)
-   }, [location])
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  const handleLinkClick = () => {
+    // Fermer le dropdown lorsqu'un lien est cliqué
+    setIsDropdownOpen(false);
+  };
 
 
 
   return (
-   <div className="nav-container">
-    <div className='nav'>
-      <div className="nav-header">
-       <div className="nav-logo">
-          <h2 className="nav-title"><span className='spa-logo'>das</span>fast<span className='span-logo'>food</span></h2>
-      </div>
-
-        <div className="nav-links" id={link ? "hidden" : ""}>
-           <Link to="/">home</Link>
-           <Link to="/About">about</Link>
-           <Link to="/Menu">Menu</Link>
-           <Link to="/Contact">contact</Link>
-           <Link to="/Cart"><img src={cartIcon} alt=""  className='cartIcon'/>({foodBox.length})</Link>
+    <div className="header-container">
+      <nav className="navbar navbar-expand-lg navbar-w bg-dark fixed-top box-shadow py-4">
+        <div className="container">
+          <Link className="navbar-brand" to="/"><h1 className='text-white'>DAS<span class="text-warning">FOOD</span></h1></Link>
+          <button
+            className="navbar-toggler icon bg-warning"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)} // Inverser l'état du dropdown lors du clic sur le bouton
+          >
+            <span className="navbar-toggler-icon icon-btn"></span>
+          </button>
+          <div
+            className={`collapse navbar-collapse ${isDropdownOpen ? 'show' : ''}`}
+            id="navbarNavDropdown"
+          >
+            <ul className="navbar-nav aria-expanded ms-auto">
+              <li className="nav-item">
+                <Link className="nav-link text-warning fw-bold" to="/" onClick={handleLinkClick}>HOME</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link text-warning fw-bold fw-bold" to="/about" onClick={handleLinkClick}>ABOUT</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link text-warning fw-bold" to="/menu" onClick={handleLinkClick}>FOOD CATEGORIES</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link text-warning fw-bold" to="/contact" onClick={handleLinkClick}>CONTACT</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link text-warning fw-bold" to="/cart" onClick={handleLinkClick}>CART({foodBox.length})</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
-    <div className="open-button" onClick={update}><i class="fa fa-bars"></i></div>
-
-  </div>
-</div>
-</div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

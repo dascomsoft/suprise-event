@@ -1,26 +1,26 @@
-.portraitAbout{
-    width:100%;
-    border-bottom-left-radius: 50px;
-    border-top-right-radius: 50px;
-}
 
-.about{
-    background:#ac9072;
+
+.about-wrapper{
+    background-image:linear-gradient(rgba(20, 21, 51, 0.7), rgba(20, 21, 51, 0.7)),url(../assets/banner8.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 250px 0 250px;
+    color:#fff
 }
 
 
 .about-wrapper{
-    padding-top: 70px;
-    padding-bottom: 70px;
+ 
 }
 
 
 .about-container{
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns:1fr 1fr;
     grid-gap:30px;
-    margin: auto;
-    width: 70%;
+   
 }
 
 .about-link{
@@ -38,11 +38,7 @@
     color: darkcyan;
 }
 
-.about-link:hover{
-    background: lawngreen;
-    color: #fff;
-    border-radius: 50px;
-}
+
 
 .testiImage{
     width:100px;
@@ -64,8 +60,12 @@
 
 
 .testimony-section{
-    margin-top: 120px;
-    margin-bottom: 100px;
+    background-image:linear-gradient(rgba(20, 21, 51, 0.7), rgba(20, 21, 51, 0.7)),url(../assets/banner9.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding:150px 0 150px;
+    color: #fff;
 }
 
 .testimony-wrapper{
@@ -82,12 +82,12 @@
 .testi{
     border: 1px solid silver;
     padding: 10px;
-    box-shadow: 2px 2px 3px 2px silver;
+    border-radius:15px;
     transition: transform 0.5s;
 }
 
 .testi:hover{
-    background-color: pink;
+    background-color: rgb(168, 167, 167);
     color: #fff;
     transform: translateY(-5px);
 }

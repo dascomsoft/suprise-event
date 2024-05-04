@@ -1,26 +1,23 @@
 
 
-import burger12 from "../assets/burger12.jpg"
-import burger8 from "../assets/burger8.jpg"
-import burger2 from "../assets/burger2.jpg"
-import burger3 from "../assets/burger3.jpg" 
-import icecream from "../assets/icecream.jpg"
-import icecream1 from "../assets/icecream1.jpg"
-import icecream5 from "../assets/icecream5.jpg"
-import icecream6 from "../assets/icecream6.jpg"
-import icecream8 from "../assets/icecream8.jpg"
-import frite from "../assets/frite.jpg"
-import frite1 from "../assets/frite1.jpg"
-import frite2 from "../assets/frite2.jpg"
-import sandwich from "../assets/sandwich.jpg"
-import sandwich1 from "../assets/sandwich1.jpg"
-import sandwich3 from "../assets/sandwich3.jpg"
+import burger1 from "../assets/burg.jpg"
+import burger2 from "../assets/burg1.jpg"
+import burger3 from "../assets/frie7.webp"
+import icecream from "../assets/ice.webp"
+import icecream1 from "../assets/ice1.webp"
+import icecream2 from "../assets/ice2.webp"
+import frite from "../assets/frie3.webp"
+import frite1 from "../assets/frie4.webp"
+import frite2 from "../assets/frie5.jpeg"
+import sandwich from "../assets/sand3.jpg"
+import sandwich1 from "../assets/sand1.jpg"
+import sandwich3 from "../assets/sand2.jpg"
 
 export const FoodList =[
 
     {
         id:1,
-        image:burger12,
+        image:burger1,
         name:"Italiano Burger",
         price:20.00,
         category:"burger"
@@ -28,31 +25,18 @@ export const FoodList =[
 
 
     {
-        id:2,
-        image:burger8,
-        name:"French Burger",
-        price:28.00,
-        category:"burger"
+        id:10,
+        image:frite,
+        name:"Kryspi frites",
+        price:16.50,
+        category:"frite"
     },
 
     
-    {
-        id:3,
-        image:burger2,
-        name:"Burgatti Burger",
-        price:30.40,
-        category:"burger"
-    },
+  
 
 
-    
-    {
-        id:4,
-        image:burger3,
-        name:"Italiano Burger",
-        price:56.00,
-        category:"burger"
-    },
+ 
 
     {
         id:5,
@@ -61,6 +45,17 @@ export const FoodList =[
         price:56.500,
         category:"icecream"
     },
+
+
+
+    {
+        id:15,
+        image:sandwich3,
+        name:"French Sandwich",
+        price:81.50,
+        category:"sandwich"
+    },
+    
 
 
     {
@@ -73,39 +68,18 @@ export const FoodList =[
 
     {
         id:7,
-        image:icecream5,
+        image:icecream2,
         name:"Strawberry Icreacream",
         price:36.50,
         category:"icecream"
     },
 
 
- {
-        id:8,
-        image:icecream6,
-        name:"Milano Icreacream",
-        price:36.50,
-        category:"icecream"
-    },
 
-     
- {
-    id:9,
-    image:icecream8,
-    name:"French Icreacream",
-    price:36.50,
-    category:"icecream"
-},
 
 
    
-{
-    id:10,
-    image:frite,
-    name:"Kryspi frites",
-    price:16.50,
-    category:"frite"
-},
+
 
 
 {
@@ -123,6 +97,14 @@ export const FoodList =[
     name:"Hot frites",
     price:14.50,
     category:"frite"
+},
+
+{
+    id:3,
+    image:burger3,
+    name:"Burgatti Burger",
+    price:30.40,
+    category:"burger"
 },
 
 
@@ -143,12 +125,15 @@ export const FoodList =[
     category:"sandwich"
 },
 
+
+
+
 {
-    id:15,
-    image:sandwich3,
-    name:"French Sandwich",
-    price:81.50,
-    category:"sandwich"
+    id:2,
+    image:burger2,
+    name:"French Burger",
+    price:28.00,
+    category:"burger"
 },
 
 

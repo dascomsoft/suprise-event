@@ -8,13 +8,13 @@ const Cart = () => {
    
    const totalPrice = foodBox.reduce((price,foodItem) => price + foodItem.quantity * foodItem.price,0)
    
- if(foodBox.length===0){
-  return <h3 className='center-cart'>Oo'ps No Food in the Food Box!!!</h3>
+ if(foodBox.length === 0){
+  return <h2 className='center-cart'>Oo'ps No Food in the Food Box!!!</h2>
  }
 
   return (
     <div className="cartContainer">
-    <div className='cart'>
+    <div className='container mt-5 mb-5'>
       <div className="cart-wrapper">
         {foodBox.map((foodItem)  =>(
           <div className="cart-container" key={foodItem.id}>
@@ -28,13 +28,13 @@ const Cart = () => {
              <div className="cart-button-display">
               <p><b>Price:${foodItem.price}</b></p>
               <div className="cart-price-display">
-              <button className="cart-remove"onClick={()=>remove(foodItem)}>-</button>
+              <button className="btn bg-info text-white fw-bold me-1"onClick={()=>remove(foodItem)}>-</button>
                  {foodItem.quantity}
-              <button className="cart-add" onClick={() =>add(foodItem)}>+</button>
+              <button className="btn bg-danger text-white fw-bold ms-1" onClick={() =>add(foodItem)}>+</button>
               </div>
               <div className="cart-button-click">
-              <button className="clear-cart"onClick={clear} >Clear Food Box</button>
-              <Link to ="/Menu" className='cart-link'>See more</Link>
+              <button className="btn btn-secondary"onClick={clear} >Clear Food Box</button>
+              <Link to ="/Menu" className='btn btn-secondary ms-2'>See more</Link>
               </div>
               </div>
             </div>

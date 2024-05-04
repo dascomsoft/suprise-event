@@ -8,12 +8,6 @@ import Cart from "./Pages/Cart";
 import Navbar from './Components/Navbar';
 
 
-
-
-
-
-
-
 function App() {
 
 
