@@ -22,7 +22,7 @@ const Navbar = () => {
     <div className="header-container">
       <nav className="navbar navbar-expand-lg navbar-w bg-dark fixed-top box-shadow py-4">
         <div className="container">
-          <Link className="navbar-brand" to="/"><h1 className='text-white'>DAS<span class="text-warning">FOOD</span></h1></Link>
+          <Link className="navbar-brand" to="/"><h1 className='text-white'>DrinSud<span class="text-warning">SupriseEvents</span></h1></Link>
           <button
             className="navbar-toggler icon bg-warning"
             type="button"
@@ -41,16 +41,16 @@ const Navbar = () => {
           >
             <ul className="navbar-nav aria-expanded ms-auto">
               <li className="nav-item">
-                <Link className="nav-link text-warning fw-bold" to="/" onClick={handleLinkClick}>HOME</Link>
+                <Link className="nav-link text-warning fw-bold" to="/" onClick={handleLinkClick}>Acceuil</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link text-warning fw-bold fw-bold" to="/about" onClick={handleLinkClick}>ABOUT</Link>
+                <Link className="nav-link text-warning fw-bold fw-bold" to="/about" onClick={handleLinkClick}>A propos</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link text-warning fw-bold" to="/menu" onClick={handleLinkClick}>FOOD CATEGORIES</Link>
+                <Link className="nav-link text-warning fw-bold" to="/menu" onClick={handleLinkClick}>Nos packages</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link text-warning fw-bold" to="/contact" onClick={handleLinkClick}>CONTACT</Link>
+                <Link className="nav-link text-warning fw-bold" to="/contact" onClick={handleLinkClick}>Contact</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link text-warning fw-bold" to="/cart" onClick={handleLinkClick}>CART({foodBox.length})</Link>

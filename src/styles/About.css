@@ -1,25 +1,24 @@
 
 
 .about-wrapper{
-    background-image:linear-gradient(rgba(20, 21, 51, 0.7), rgba(20, 21, 51, 0.7)),url(../assets/banner8.jpg);
+    background-image:linear-gradient(rgba(20, 21, 51, 0.7), rgba(20, 21, 51, 0.7)),url(../assets/suprise3.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    padding: 250px 0 250px;
+    padding:200px 0 80px;
     color:#fff
 }
 
 
-.about-wrapper{
- 
-}
+
 
 
 .about-container{
     display: grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1fr ;
     grid-gap:30px;
+    font-family: satisfy;
    
 }
 
@@ -34,9 +33,7 @@
 
 
 
-.span-t{
-    color: darkcyan;
-}
+
 
 
 
@@ -87,7 +84,7 @@
 }
 
 .testi:hover{
-    background-color: rgb(168, 167, 167);
+    background-color: rgb(16, 26, 37);
     color: #fff;
     transform: translateY(-5px);
 }

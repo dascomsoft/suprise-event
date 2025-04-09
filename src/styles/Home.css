@@ -1,3 +1,7 @@
+
+
+
+
 .burger, .icecream, .sandwich, .frite{
     width:100%;
 }
@@ -5,7 +9,7 @@
 
 .aside-content{
     padding:50px 0 100px;
-    background-color: #cbcbcb;
+    background-color: #f7f3f3;
 }
 
 
@@ -28,7 +32,7 @@ aside{
 
 
 .aside-box{
-    border: 1px solid rgb(164, 164, 164);
+    border: 1px solid rgb(206, 207, 207);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,20 +40,40 @@ aside{
     padding:13px;
     cursor: pointer;
     transition: 0.5s;
-    border-radius:20px;
+    border-radius:10px;
 }
 
 .aside-box:hover{
-    background-color:rgb(133, 132, 132);
+    background-color:rgb(218, 219, 219);
     transform: translateY(-7px);
 }
 
 
 .aside-images{
     display:grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(4,1fr);
     grid-gap:20px;
 }
+
+@media(max-width:1000px){
+    .aside-images{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        grid-gap:30px;
+    }
+    
+}
+
+
+@media(max-width:500px){
+    .aside-images{
+        display:grid;
+        grid-template-columns:1fr;
+        grid-gap:30px;
+    }
+    
+}
+
 
 
 
@@ -78,6 +102,9 @@ aside{
 }
 
 
+
+
+
   /*Food menu*/
 .food-menu{
     display:grid;
@@ -89,18 +116,20 @@ aside{
 /* article*/
 
 article{
- background-image: url('../assets/banner-bg.png');
+ background-image:radial-gradient(rgba(20,21,51,0.8),rgba(20,21, 51,0.8)) , url(../assets/suprise2.jpg);
+
  background-position: center;
  background-size: cover;
  background-repeat: no-repeat;
- padding:200px 0 200px;
+ padding:250px 0 100px;
  color: #fff;
+ font-family: "Satisfy", sans-serif;
 }
 
 /*media queries*/
 @media(max-width:800px){
     article{
-        padding:150px 0 100px;
+        padding:150px 0 50px;
     }
 }
 
@@ -139,17 +168,16 @@ button:hover{
 }
 
 
+.home-about{
+    background-image:radial-gradient(rgba(20,21,51,0.8),rgba(20,21, 51,0.8)) , url(../assets/surprise-back1.jpg);
 
-.burger-section, .icecream-section, .sandwich-section, .frite-section{
-    text-transform: uppercase;
-    color: blueviolet;
-    font-size: 20px;
-}
-
-.food-menu1{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    grid-gap:30px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding:100px 0 100px;
+    color: #fff;
+    font-family: "Satisfy", sans-serif;
+    font-size:1.5rem;
 }
 
 @media(max-width:1000px){
@@ -296,7 +324,7 @@ button:hover{
 
 .staff-wrapper{
     background-color:whitesmoke;
-    padding:100px 0 100px;
+    padding:70px 0 70px;
    
 }
 
@@ -434,6 +462,141 @@ color: #fff;
 
 
 }
+
+
+
+/*HOME SERVICES DESIGN*/
+.container {
+    transition: opacity 0.7s ease;
+    position: relative;
+  }
+  
+  .dimmed {
+    opacity: 1;
+  }
+  
+  .aside-images {
+    display: grid;
+    gap: 2rem;
+    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  
+  .aside-box {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .clickable-container {
+    cursor: pointer;
+  }
+  
+  .clickable-container:hover .aside-box {
+    transform: translateY(-5px);
+  }
+  
+  .image-aside {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  /* Overlay */
+  .details-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .overlay-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+  }
+  
+  .details-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    z-index: 1002;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .detail-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 15px 0;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s;
+  }
+  
+  .close-button:hover {
+    color: #333;
+  }
+  
+  .cta-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background 0.3s;
+  }
+  
+  .cta-button:hover {
+    background: #0056b3;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+
+
+
+
+
+
+
+
 
 
 

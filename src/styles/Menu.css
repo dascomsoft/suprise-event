@@ -79,12 +79,6 @@ section{
 }
 
 
-
-
-
-
-
-
 .details {
 
     position: fixed;
@@ -121,24 +115,6 @@ section{
     display: flex;
     justify-content: space-between; /* Alignez les boutons à l'extrémité */
   }
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 
 .btnDetail{
     margin-top:10px;
