@@ -1,32 +1,13 @@
 import React from 'react';
 import "../styles/Home.css";
 import { Link } from "react-router-dom"
-import burger1 from "../assets/burg.jpg"
-import burger2 from "../assets/burg1.jpg"
-import burger3 from "../assets/frie7.webp"
-import icecream from "../assets/ice.webp"
-import icecream1 from "../assets/ice1.webp"
-import icecream2 from "../assets/ice2.webp"
-import frite from "../assets/frie3.webp"
-import frite1 from "../assets/frie6.jpeg"
-import frite2 from "../assets/frie5.jpeg"
-import sandwich from "../assets/sand3.jpg"
-import sandwich1 from "../assets/sand1.jpg"
-import sandwich2 from "../assets/sand2.jpg"
-import payment from "../assets/paid.png"
-import pick from "../assets/pick1.png"
-import address from "../assets/addres.png"
-import de from "../assets/de.png"
 import portrait2 from "../assets/che.jpg"
 import portrait3 from "../assets/che1.jpg"
 import portrait14 from "../assets/che2.jpg"
 import portrait10 from "../assets/che2.jpg"
 import portrait13 from "../assets/che2.jpg"
 import portrait4 from "../assets/che2.jpg"
-
-
-import surprise from "../assets/suprise1.jpg"
-import { servicesBox } from '../BoxServices/servicesBox';
+import { servicesBox } from '../Box/servicesBox';
 import { useState } from 'react';
 
 const Home = () => {
@@ -65,7 +46,6 @@ const Home = () => {
           </aside>
         </div>
         <div className="container">
-
           <div className={`container ${selectedService ? 'dimmed' : ''}`}>
             <div className="aside-images">
               {servicesBox.map((service) => (

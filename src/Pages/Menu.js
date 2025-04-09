@@ -32,8 +32,8 @@ const Menu = () => {
 
     <div className='menu'>
 
-      <h2 className="menu-header-title">Enjoy Your Favorite Food</h2>
-      <h3 className="menu-title">food categories</h3>
+      <h2 className="menu-header-title">Nos Differents Packages</h2>
+      <h3 className="menu-title">Categories Package</h3>
       <div className="categories-button">
         <button className="category-button" onClick={() => setData(FoodList)}>all</button>
         <button className="category-button" onClick={() => filterItem('burger')}>burger</button>
