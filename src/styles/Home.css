@@ -534,6 +534,7 @@ color: #fff;
     border-radius: 15px;
     max-width: 600px;
     width: 90%;
+    margin-top:7rem;
     position: relative;
     z-index: 1002;
     animation: fadeIn 0.3s ease-out;

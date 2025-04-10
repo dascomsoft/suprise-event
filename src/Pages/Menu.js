@@ -1,103 +1,105 @@
-import React, { useState } from 'react';
-import { FoodList } from "../Components/FoodList";
-import "../styles/Menu.css"
-import { useContext } from 'react';
-import { FoodBoxtContext } from '../Helpers/FoodBoxtContext';
-import { Link } from "react-router-dom"
+
+
+
+import React, { useState ,useEffect } from 'react';
+import { packageBox } from '../Box/packageBox';
+import "../styles/Menu.css";
+
+
+
 
 
 
 const Menu = () => {
+  useEffect(() => {
+    // Faire défiler vers le haut au chargement de la page
+    window.scrollTo(0, 0);
+}, []);
 
-  const { add } = useContext(FoodBoxtContext)
+  const [selectedService, setSelectedService] = useState(null);
 
-  const [data, setData] = useState(FoodList)
+  const handleServiceClick = (service) => {
+    setSelectedService(service);
+  };
 
-  const filterItem = (item) => {
+  const closeDetails = () => {
+    setSelectedService(null);
+  };
 
-    setData(FoodList.filter((data) => data.category === item))
-  }
-
-  const [detail, setDetail] = useState([])
-
-  const pageDetail = (product) => {
-    setDetail([{ ...product }])
-    setClose(true)
-  }
-
-  const [close, setClose] = useState(false)
+  const handleReservation = () => {
+    const navigate = useNavigate();
+    navigate("/Contact");
+  };
 
 
   return (
 
     <div className='menu'>
-
-      <h2 className="menu-header-title">Nos Differents Packages</h2>
-      <h3 className="menu-title">Categories Package</h3>
-      <div className="categories-button">
-        <button className="category-button" onClick={() => setData(FoodList)}>all</button>
-        <button className="category-button" onClick={() => filterItem('burger')}>burger</button>
-        <button className="category-button" onClick={() => filterItem('icecream')} >icecream</button>
-        <button className="category-button" onClick={() => filterItem('frite')}  >fries</button>
-        <button className="category-button" onClick={() => filterItem('sandwich')}  >sandwich</button>
+      <div className='menu-header'>
+        <h2 className="menu-header-title">Nos Differents Packages</h2>
+        <h3 className="menu-title">Categories Package</h3>
       </div>
-      <div className="menu-container">
-        <div className="menu-wrapper">
-          {data.map((food) => (
-            <section key={food.id}>
-              <div className="image-section">
-                <img src={food.image} alt="" className='imageSection' />
-              </div>
-              <div className="sectionText">
-                <p><b>{food.name}</b></p>
-                <p><b>${food.price}</b></p>
-                <button className='btn btn-secondary' onClick={() => pageDetail(food)}>View</button>
-              </div>
-            </section>
-          ))}
-        </div>
-      </div>
-
-      {close ?
-
-        <div className="details">
-          {detail.map((x) => (
-            <div className="detail-wrapper" key={x.id}>
-              <div className="detail-container">
-                <img src={x.image} alt="" className='imageDetail' />
-                <div className="moreInfo">
-                  <h3>{x.name}</h3>
-                  <h4 className="cart-title">Food Composition</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae eos numquam unde aut quia molestiae voluptate quae dolorum quod optio?</p>
-                  <p><b>${x.price}</b></p>
-                  <div className="buttonDetail">
-                    <Link to="/Cart" onClick={() => add(x)} className='btn btn-secondary'>Order</Link>
-                    <button className='btn btn-secondary' onClick={() => setClose(false)}>Close</button>
+      <div className="container">
+        <div className={`container ${selectedService ? 'dimmed' : ''}`}>
+          <div className="aside-images">
+            {packageBox.map((service) => (
+              <div
+                key={service.id}
+                onClick={() => handleServiceClick(service)}
+                className="clickable-container"
+              >
+                <div className="aside-box">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="image-aside"
+                  />
+                  <div className="aside-description">
+                    <h4 className="mt-4">{service.title}</h4>
                   </div>
                 </div>
               </div>
-            </div>
-
-          ))}
-        </div> : null}
-
-
-
-
-      <div className='banner'>
-        <div className="container">
-          <div className="article-text">
-            <h4 className="article-title fw-bold mb-3 text-danger">ENJOY GOOD FOOD WITH US</h4>
-            <h2 className="article-title display-3 mb-3 text-dark fw-bold">ORDER NOW!!!</h2>
-            <p className='fw-bold fs-4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus voluptates repudiandae temporibus facilis libero dolore corrupti eligendi aliquid quia consequatur.</p>
-            <Link to="/Menu" className='btn btn-danger btn-lg mt-3'>Explore more</Link>
+            ))}
           </div>
+
+          {selectedService && (
+            <div className="details-overlay">
+              <div className="overlay-backdrop" onClick={closeDetails}></div>
+              <div className="details-content">
+                <h2>{selectedService.title}</h2>
+                <img
+                  src={selectedService.image}
+                  alt={selectedService.title}
+                  className="detail-image"
+                />
+                <p>
+                  {selectedService.description.intro}
+                  <br /><br />
+                  {selectedService.description.list.map((item, index) => (
+                    <span key={index}>
+                      {item}<br />
+                    </span>
+                  ))}
+                  <br />
+                  {selectedService.description.outro}
+                </p>
+                <button
+                  className="cta-button"
+                  onClick={closeDetails}
+                >
+                  Fermer
+                </button>
+                <button
+                  onClick={() => window.location.href = '/Contact'}
+                  className='cta-button ms-3'
+                >
+                  Réserver
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
-
-
-
-
       <footer className="wrapper">
         <div className="container">
           <div className="footer-showcase">

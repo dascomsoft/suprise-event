@@ -52,9 +52,6 @@ const Navbar = () => {
               <li className="nav-item">
                 <Link className="nav-link text-warning fw-bold" to="/contact" onClick={handleLinkClick}>Contact</Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link text-warning fw-bold" to="/cart" onClick={handleLinkClick}>CART({foodBox.length})</Link>
-              </li>
             </ul>
           </div>
         </div>

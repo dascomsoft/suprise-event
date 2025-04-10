@@ -1,85 +1,89 @@
 
 
+import party from "../assets/party.jpg";
+import bouquet1 from "../assets/bouquet1.webp";
+import bouquet from "../assets/cake1.jpg";
+import party3 from "../assets/party3.jpg";
+import party1 from "../assets/party1.jpg";
 
+export const packageBox = [
+  {
+    id: 1,
+    image: party1,
+    title: "🎈 Package Classique & 30 000 FCFA",
+    description: {
+      intro: "💫 L'essentiel pour un moment plein d'émotion",
+      list: [
+        "🎂 Un délicieux gâteau d’anniversaire",
+        "🎷 Une prestation musicale douce par un saxophoniste professionnel",
+        "✍️ La rédaction et la lecture personnalisée d’un message émouvant"
+      ],
+      outro: '👉 Idéal pour dire "Je pense à toi" avec élégance et simplicité.'
+    }
+  },
+  {
+    id: 2,
+    image: bouquet1,
+    title: "🌟 Package Prestige",
+    description: {
+      intro: "🌺 Un soupçon de raffinement pour sublimer votre surprise",
+      list: [
+        "🎂 Gâteau d’anniversaire",
+        "🎷 Saxophoniste",
+        "✍️ Message personnalisé lu avec émotion",
+        "🍇 Un panier garni (fruits frais, raisins, pommes, chocolat)"
+      ],
+      outro: "👉 Une surprise délicate qui allie musique, douceur et gourmandise."
+    }
+  },
+  
+  
+  {
+    id: 4,
+    image: party,
+    title: "💖 Package Bonheur",
+    description: {
+      intro: "🎉 Une explosion de bonheur et de saveurs",
+      list: [
+        "🎂 Gâteau d’anniversaire",
+        "🎷 Saxophoniste",
+        "✍️ Lecture d’un message touchant",
+        "🍇 Panier garni complet (fruits, raisins, pommes, chocolat)"
+      ],
+      outro: "👉 Le package parfait pour transmettre joie, tendresse et affection."
+    }
+  },
 
-
-
-
-
-
-import livraison from "../assets/livraison.jpg"
-import piano from "../assets/piano.jpg"
-import sonorisation from "../assets/sonorisation.jpg"
-import traiteur from "../assets/traiteur.jpg"
-import bouquet from "../assets/bouquet-argent.jpg"
-import surprise from "../assets/cake-back1.jpg"
-import ceremonie from "../assets/ceremonie.jpg"
-import instrument1 from "../assets/instrument.jpg"
-
-
-export const servicesBox = [
-
-   {
-       id:1,
-       image:instrument1,
-       title:'🎷 Mise à disposition des instrumentistes',
-       description:'Pour une ambiance musicale live mémorable, faites appel à nos instrumentistes professionnels : saxophonistes, guitaristes, pianistes…Ils subliment vos événements avec des prestations en direct, dans un esprit élégant, romantique ou festif selon votre thème.'
-   },
-
-   {
-       id:2,
-       image:surprise,
-       title:'🎁 Surprise personnalisée',
-       description:'Envie de marquer un jour spécial ?Drindsud Surprise Event conçoit pour vous des surprises entièrement personnalisées, allant de la mise en scène à l’animation, avec des éléments originaux, des émotions fortes et une attention aux moindres détails.'
-
-
-   },
-
-   {
-       id:3,
-       image:piano,
-       title:'🎹 Piano / Bar live',
-       description:'Ajoutez une ambiance chic et feutrée à votre soirée avec notre concept Piano/Bar.Un pianiste professionnel accompagne votre événement avec élégance, créant une atmosphère chaleureuse et intimiste autour d’un bar personnalisé selon vos envies.'
-
-   },
-
-   {
-       id:4,
-       image:traiteur,
-       title:'🥘 Service traiteur',
-       description:'Offrez à vos invités une expérience culinaire inoubliable !Drindsud Surprise Event vous propose un service traiteur raffiné, adapté à tous vos événements : anniversaires, fiançailles, surprises... Des mets savoureux, préparés avec soin, pour émerveiller les papilles et sublimer votre moment.'
-
-   },
-
-   {
-       id:5,
-       image:sonorisation,
-       title:'🔊 Sonorisation',
-       description:'Une ambiance réussie passe par un son impeccable.Nous mettons à votre disposition un matériel de sonorisation de haute qualité, adapté à tout type d’événement, accompagné d’un technicien si nécessaire pour garantir une immersion sonore parfaite.'
-
-   },
-
-   {
-       id:6,
-       image:bouquet,
-       title:"💸 Bouquet d'argent",
-       description:'Exprimez votre amour ou votre reconnaissance de façon originale avec notre bouquet d’argent.Une mise en scène élégante où les billets sont soigneusement pliés et présentés sous forme de bouquet floral, pour un effet waouh garanti !'
-
-   },
-   {
-    id:7,
-    image:livraison,
-    title:"🚚 Livraison surprise",
-    description:'Faites livrer vos émotions directement chez vos proches !Avec notre service de livraison surprise, nous nous chargeons de remettre vos cadeaux, gâteaux ou bouquets de manière élégante et personnalisée, accompagnés d’un message émouvant ou festif.'
-
-},
-
-{
-    id:8,
-    image:ceremonie,
-    title:"🎤 Maître de cérémonie",
-    description:'Assurez une animation fluide et captivante grâce à notre maître de cérémonie expérimenté.Avec charisme, humour et professionnalisme, il coordonne votre événement du début à la fin, en créant des moments de complicité entre les invités et les organisateurs.'
-
-}
-
-]
+  {
+    id: 6,
+    image: bouquet,
+    title: "🔥 Package Inoubliable",
+    description: {
+      intro: "🌟 Parce que certains moments méritent d’être gravés à jamais",
+      list: [
+        "🎂 Gâteau d’anniversaire",
+        "🎷 Saxophoniste en live",
+        "✍️ Lecture personnalisée du message",
+        "🍇 Panier garni de douceurs"
+      ],
+      outro: "👉 Un package complet pour marquer les esprits et toucher les cœurs."
+    }
+  },
+  {
+    id: 7,
+    image: party3,
+    title: "🌹 Package Premium",
+    description: {
+      intro: "👑 Une expérience élégante, romantique et mémorable",
+      list: [
+        "🎂 Gâteau d’anniversaire",
+        "🎷 Saxophoniste",
+        "✍️ Message sur mesure",
+        "🍇 Panier garni gourmand",
+        "🌹 Un somptueux bouquet de roses fraîches"
+      ],
+      outro: "👉 Un vrai coup de cœur pour une déclaration d’amour ou un moment inouï."
+    }
+  },
+ 
+];

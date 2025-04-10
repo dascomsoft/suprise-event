@@ -1,7 +1,6 @@
+
 import React from 'react';
 import "../styles/Contact.css"
-import banner from "../assets/banner-bg.png"
-import banner4 from "../assets/banner4.jpg"
 
 
 const Contact = () =>{
@@ -11,8 +10,8 @@ const Contact = () =>{
   <div class="contact">
        <div className="contact-content">
        <div class="section-contact-content mb-5">
-           <h2 class="text-center display-2">Contact-us/</h2>
-            <p class="text-center  text-warning fw-bold lead">For more informations, please feel free to contact us. <br/>We will highly appreciate to help and guide you !</p>
+           <h2 class="text-center display-2">Contactez-nous/</h2>
+            <p class="text-center  text-warning fw-bold lead">Pour plus d'informations contactez-nous via le formulaire ci-dessous!</p>
         </div>
        <div className="container">
          <div className="contact-container">

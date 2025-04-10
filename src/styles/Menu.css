@@ -1,7 +1,12 @@
 
 
-.menu{
-    padding:200px 0 0px;
+/* .menu{
+    padding:150px 0 0px;
+} */
+
+.menu-header{
+    padding:12rem 0 3rem;
+    text-align: center;
 }
 
 .menu-wrapper{

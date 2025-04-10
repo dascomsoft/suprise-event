@@ -2,12 +2,16 @@ import React from 'react';
 import { Link } from "react-router-dom"
 import portrait2 from "../assets/burg7.jpg"
 import portrait3 from "../assets/burg8.jpg"
-import banner from "../assets/banner9.jpg"
-
+import { useEffect } from 'react';
 import portrait4 from "../assets/burg2.jpg"
 import "../styles/About.css"
 
 const About = () => {
+
+  useEffect(() => {
+    // Faire défiler vers le haut au chargement de la page
+    window.scrollTo(0, 0);
+}, []);
 
   return (
     <div className="about-main">
@@ -25,15 +29,15 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className='banner'>
-        <div className="container">
-          <div className="article-text">
-            <h2 className="article-title display-3 mb-3 text-dark fw-bold">✨ Notre mission</h2>
-            <p className='fw-bold fs-4'>Notre objectif est simple : transformer vos idées en souvenirs inoubliables. Qu’il s’agisse d’un anniversaire, d'une demande en mariage, d'une baby shower, d'un événement en entreprise ou d'une surprise personnalisée, nous mettons tout en œuvre pour que votre événement soit exceptionnel, du premier échange jusqu’au grand jour.</p>
-            <Link to="/Menu" className='btn btn-danger btn-lg mt-3'>Explore more</Link>
-          </div>
-        </div>
-      </div>
+      <div className='home-about'>
+             <div className='container'>
+                 <h1>Notre Mission</h1>
+                 <h3>💎 Nos valeurs</h3>
+                 <p className=''>Chez Drindsud Surprise Event, nous croyons que chaque moment de vie mérite d’être célébré de manière unique et inoubliable.Née d’une passion pour l’art de surprendre et de créer l’émotion, notre agence événementielle accompagne particuliers et professionnels dans la conception et la réalisation de moments magiques.</p>
+                 <p className=''>Notre objectif est simple : transformer vos idées en souvenirs inoubliables. Qu’il s’agisse d’un anniversaire, d’une demande en mariage, d’une baby shower, d’un événement d’entreprise ou d’une surprise personnalisée, nous mettons tout en œuvre pour que votre événement soit exceptionnel, du premier échange jusqu’au grand jour.</p>
+                 <Link to="/about" className='btn btn-primary btn-lg mt-3'>En savoir plus</Link>
+             </div>
+           </div>
       <div className="testimony-section">
         <h2 className="title-testi">Clients <span className='text-warning'>Testimonies</span></h2>
         <div className="testimony-wrapper">
