@@ -5,6 +5,7 @@ import bouquet1 from "../assets/bouquet1.webp";
 import bouquet from "../assets/cake1.jpg";
 import party3 from "../assets/party3.jpg";
 import party1 from "../assets/party1.jpg";
+import { BiParty } from "react-icons/bi";
 
 export const packageBox = [
   {
@@ -85,5 +86,23 @@ export const packageBox = [
       outro: "👉 Un vrai coup de cœur pour une déclaration d’amour ou un moment inouï."
     }
   },
+
+  {
+    id:8,
+    image :party,
+    title:"👶 Package Baby Shower",
+    description: {
+      intro: "🍼 Une célébration tendre et joyeuse autour de l’arrivée de bébé Idéal pour fêter l’arrivée imminente d’un nouveau-né",
+      list: [
+        "🎈 Décoration personnalisée sur le thème de votre choix",
+        "🎷 Saxophoniste",
+        "🍰 Gâteau spécial baby shower (fille, garçon ou neutre)",
+        "🍇 Panier garni gourmand",
+        "🎁 Petits cadeaux pour les invités (souvenirs personnalisés)",
+        "📸 Mini séance photo souvenir",
+      ],
+      outro: "👶 Un moment rempli de douceur, d’émotions et de complicité à partager entre proches."
+    }
+  }
  
 ];

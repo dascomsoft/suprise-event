@@ -28,7 +28,7 @@ const Menu = () => {
 
   const handleReservation = () => {
     const navigate = useNavigate();
-    navigate("/Contact");
+    navigate("/Reservation");
   };
 
 
@@ -90,7 +90,7 @@ const Menu = () => {
                   Fermer
                 </button>
                 <button
-                  onClick={() => window.location.href = '/Contact'}
+                  onClick={() => window.location.href = '/Reservation'}
                   className='cta-button ms-3'
                 >
                   Réserver
@@ -162,11 +162,13 @@ const Menu = () => {
               </div>
             </div>
             <div className="foot-a">
-              <h3 className='display-5'>FOODS MENU</h3>
-              <p>Burger</p>
-              <p>Icecream</p>
-              <p>Frites</p>
-              <p>Sandwich</p>
+              <h3 className='display-5'>PACKAGES</h3>
+              <p>Package Bonheur</p>
+              <p>Package Classique</p>
+              <p>Package Prestige</p>
+              <p>Package Premium</p>
+              <p>Package Inoubliable</p>
+
             </div>
 
           </div>

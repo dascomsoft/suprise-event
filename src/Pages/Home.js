@@ -72,13 +72,7 @@ const Home = () => {
               <div className="details-overlay">
                 <div className="overlay-backdrop" onClick={closeDetails}></div>
                 <div className="details-content">
-                  {/* <button
-                    className="close-button"
-                    onClick={closeDetails}
-                    aria-label="Fermer"
-                  >
-                    ×
-                  </button> */}
+                 
                   <h2>{selectedService.title}</h2>
                   <img
                     src={selectedService.image}
@@ -263,11 +257,13 @@ const Home = () => {
               </div>
             </div>
             <div className="foot-a">
-              <h3 className='display-5'>FOODS MENU</h3>
-              <p>Burger</p>
-              <p>Icecream</p>
-              <p>Frites</p>
-              <p>Sandwich</p>
+              <h3 className='display-5'>PACKAGES</h3>
+              <p>Package Bonheur</p>
+              <p>Package Classique</p>
+              <p>Package Prestige</p>
+              <p>Package Premium</p>
+              <p>Package Inoubliable</p>
+
             </div>
 
           </div>

@@ -1,0 +1,198 @@
+.client-dashboard {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 2rem;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    margin: 10rem 0 5rem;
+  }
+  
+  .client-dashboard .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .client-dashboard h2 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .client-dashboard form {
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .client-dashboard .form-submitting {
+    position: relative;
+  }
+  
+  .client-dashboard .form-submitting::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 10;
+    border-radius: 8px;
+  }
+  
+  .client-dashboard .submit-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    display: none;
+  }
+  
+  @keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  
+  .client-dashboard label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+    color: #444;
+  }
+  
+  .client-dashboard input,
+  .client-dashboard textarea,
+  .client-dashboard select {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+  }
+  
+  .client-dashboard input:focus,
+  .client-dashboard textarea:focus,
+  .client-dashboard select:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .client-dashboard button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    position: relative;
+  }
+  
+  .client-dashboard button:hover {
+    background-color: #0056b3;
+  }
+  
+  .client-dashboard button .button-text {
+    display: inline-block;
+  }
+  
+  .client-dashboard button .loading-spinner {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 2px solid white;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+  }
+  
+  .client-dashboard .booking-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+    background-color: #fafafa;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .client-dashboard .booking-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: #222;
+  }
+  
+  .client-dashboard .booking-card p {
+    margin: 0.4rem 0;
+    color: #555;
+  }
+  
+  .client-dashboard .booking-card strong {
+    color: #111;
+  }
+  
+  .client-dashboard .booking-actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .client-dashboard .delete-btn {
+    background-color: #dc3545;
+  }
+  
+  .client-dashboard .delete-btn:hover {
+    background-color: #b02a37;
+  }
+  
+  .client-dashboard .rating-form {
+    margin-top: 1rem;
+  }
+  
+  .client-dashboard .rating-form label {
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+  
+  .client-dashboard .rating-stars {
+    display: inline-flex;
+    direction: rtl; /* Pour le système de notation inversé */
+  }
+  
+  .client-dashboard .rating-stars input[type="radio"] {
+    display: none;
+  }
+  
+  .client-dashboard .rating-stars label {
+    color: #000; /* Couleur noire avant sélection */
+    font-size: 1.5rem;
+    padding: 0 2px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .client-dashboard .rating-stars label:hover,
+  .client-dashboard .rating-stars label:hover ~ label,
+  .client-dashboard .rating-stars input[type="radio"]:checked ~ label {
+    color: #ffa500; /* Couleur jaune lors de la sélection */
+  }
+  
+  .client-dashboard .rating-display {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    color: #ffa500;
+  }
