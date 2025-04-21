@@ -87,7 +87,7 @@ const AdminDashboard = () => {
       const bookingRef = doc(db, "bookings", bookingId);
       await updateDoc(bookingRef, {
         adminResponse: responseText,
-        adminName: adminData.name || "Admin",
+        // adminName: adminData.name || "Admin",
         adminPhone: adminData.phone || "",
         respondedAt: new Date(),
       });
@@ -97,7 +97,7 @@ const AdminDashboard = () => {
           ? {
               ...booking,
               adminResponse: responseText,
-              adminName: adminData.name,
+              // adminName: adminData.name,
               adminPhone: adminData.phone,
             }
           : booking
@@ -147,16 +147,16 @@ const AdminDashboard = () => {
 
           <div className="admin-nav">
             <button onClick={() => setShowReviews(false)} className={!showReviews ? 'active' : ''}>
-              Bookings
+              Reservations
             </button>
             <button onClick={() => setShowReviews(true)} className={showReviews ? 'active' : ''}>
-              Reviews ({reviews.length})
+              Revues ({reviews.length})
             </button>
           </div>
 
           {!showReviews && (
             <div className="bookings-section">
-              <h2>📅 User Bookings</h2>
+              <h2>Reservations Des Clients</h2>
               {bookings.length === 0 ? (
                 <p>No bookings found.</p>
               ) : (
@@ -184,7 +184,7 @@ const AdminDashboard = () => {
 
           {showReviews && (
             <div className="reviews-section">
-              <h2>⭐ Customer Reviews</h2>
+              <h2>⭐ Appreciations Des Clients</h2>
               {reviews.length === 0 ? (
                 <p>No reviews yet.</p>
               ) : (

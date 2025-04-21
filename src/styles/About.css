@@ -6,8 +6,29 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    padding:250px 0 80px;
+    color:#fff
+}
+
+
+
+
+
+@media(max-width:1000px){
+    .about-wrapper{
+    background-image:linear-gradient(rgba(8, 12, 6, 0.7), rgba(31, 32, 31, 0.4));
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     padding:200px 0 80px;
     color:#fff
+    }
+
+    .testimony-container{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
 }
 
 
@@ -52,7 +73,11 @@
 
 .title-testi{
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom:50px;
+}
+
+.testi-header{
+    margin-bottom:4rem;
 }
 
 
@@ -61,7 +86,7 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    padding:150px 0 150px;
+    padding:80px 0 80px;
     color: #fff;
 }
 

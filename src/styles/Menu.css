@@ -1,91 +1,93 @@
 
 
-/* .menu{
-    padding:150px 0 0px;
-} */
 
-.menu-header{
-    padding:12rem 0 3rem;
+
+
+
+
+/*========== HEADER ==========*/
+.menu-header {
+    padding: 12rem 0 3rem;
     text-align: center;
-}
-
-.menu-wrapper{
+  }
+  
+  .menu-title,
+  .menu-header-title {
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 40px;
+  }
+  
+  /* ========== CONTAINER PRINCIPAL ========== */
+  .menu-container {
+    padding: 70px 0;
+    position: relative;
+  }
+  
+  .menu-wrapper {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    grid-gap:30px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
     margin: auto;
     width: 80%;
-}
-
-.menu-container{
-   padding:70px 0 70px;
-   position: relative;
-}
-
-
-section{
+  }
+  
+  /* ========== SECTION CARTE ========== */
+  section {
     box-shadow: 1px 1px 1px 3px silver;
-}
-
-.sectionText{
-    padding:10px
-}
-
-
-
-.menu-title, .menu-header-title{
-   text-align: center;
-   text-transform: uppercase;
-   margin-top: 40px;
-}
-
-
-.categories-button{
-    width:50%;
-    margin:auto;
-    text-align:center
-}
-
-
-.category-button{
-    width:100px;
-    padding:10px;
-    background-color:#555;
-    color:#fff;
+  }
+  
+  .sectionText {
+    padding: 10px;
+  }
+  
+  .imageSection {
+    width: 100%;
+  }
+  
+  .imageDetail {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    padding: 15px;
+    max-width: 100%;
+  }
+  
+  /* ========== BOUTONS DE CATÉGORIE ========== */
+  .categories-button {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .category-button {
+    width: 100px;
+    padding: 10px;
+    background-color: #555;
+    color: #fff;
     border: none;
     text-transform: uppercase;
-    margin:5px;
+    margin: 5px;
     margin-top: 40px;
     font-weight: bolder;
     cursor: pointer;
-}
-
-.category-button:hover{
+  }
+  
+  .category-button:hover {
     background: lawngreen;
-}
-
-.menuBtn{
+  }
+  
+  /* ========== BOUTON GÉNÉRIQUE ========== */
+  .menuBtn {
     border: none;
     background: #666;
-    color:#fff;
+    color: #fff;
     padding: 10px;
     text-transform: uppercase;
-}
-
-.imageSection{
-    width:100%
-}
-
-.imageDetail{
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    padding:15px;
-}
-
-
-.details {
-
+  }
+  
+  /* ========== DÉTAILS POPUP ========== */
+  .details {
     position: fixed;
     z-index: 1;
     left: 0;
@@ -103,69 +105,69 @@ section{
     background-color: #fefefe;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Réduisez la largeur de la fenêtre modale pour une meilleure adaptation */
+    width: 80%;
     max-width: 600px;
   }
   
-  .imageDetail {
-    max-width: 100%; /* Assurez-vous que l'image ne dépasse pas la largeur de la fenêtre modale */
-  }
-  
   .moreInfo {
-    margin-left: 20px; /* Ajoutez une marge pour séparer l'image du contenu */
+    margin-left: 20px;
   }
   
+  /* ========== BOUTONS DANS LES DÉTAILS ========== */
   .buttonDetail {
-    margin-top: 20px; /* Ajoutez une marge au-dessus des boutons */
     display: flex;
-    justify-content: space-between; /* Alignez les boutons à l'extrémité */
+    justify-content: space-between;
+    gap: 5px;
+    margin-top: 20px;
   }
-
-.btnDetail{
-    margin-top:10px;
-    background: #333;
-    color: #fff;
-    padding:10px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    text-decoration:none;
-}
-
-.buttonDetail{
-    display: flex;
-    gap:5px;
-}
-
-.closeBtn{
-    margin-top: 10px;
+  
+  .btnDetail,
+  .closeBtn {
     background: #333;
     color: #fff;
     padding: 10px;
     border: none;
     outline: none;
     cursor: pointer;
-}
-
-
-
-@media(max-width:1100px){
-    .menu-wrapper{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+    text-decoration: none;
+    margin-top: 10px;
+  }
+  
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 1100px) {
+    .menu-wrapper {
+      grid-template-columns: 1fr 1fr;
     }
-
-
-    .menu-header-title{
-        padding-left:25px;
-        padding-right:25px ;
+  
+    .menu-header-title {
+      padding-left: 25px;
+      padding-right: 25px;
     }
-}
-
-@media(max-width:700px){
-    .menu-wrapper{
-        display: grid;
-        grid-template-columns: 1fr;
+  }
+  
+  @media (max-width: 700px) {
+    .menu-wrapper {
+      grid-template-columns: 1fr;
     }
-}
+  }
+   
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

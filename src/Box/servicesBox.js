@@ -1,12 +1,5 @@
 
 
-
-
-
-
-
-
-
 import livraison from "../assets/livraison.jpg"
 import piano from "../assets/piano.jpg"
 import sonorisation from "../assets/sonorisation.jpg"

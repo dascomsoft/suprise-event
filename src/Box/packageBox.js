@@ -5,13 +5,17 @@ import bouquet1 from "../assets/bouquet1.webp";
 import bouquet from "../assets/cake1.jpg";
 import party3 from "../assets/party3.jpg";
 import party1 from "../assets/party1.jpg";
-import { BiParty } from "react-icons/bi";
+import suprise5 from "../assets/suprise5.jpg";
+import suprise4 from "../assets/suprise4.jpg";
+import suprise3 from "../assets/suprise3.jpg";
+import livraison from "../assets/livraison.jpg";
+
 
 export const packageBox = [
   {
     id: 1,
     image: party1,
-    title: "🎈 Package Classique & 30 000 FCFA",
+    title: "🎈 Package Classique",
     description: {
       intro: "💫 L'essentiel pour un moment plein d'émotion",
       list: [
@@ -87,6 +91,8 @@ export const packageBox = [
     }
   },
 
+
+
   {
     id:8,
     image :party,
@@ -104,5 +110,91 @@ export const packageBox = [
       outro: "👶 Un moment rempli de douceur, d’émotions et de complicité à partager entre proches."
     }
   }
+
+,
+
+
+
+
+  {
+    id:9,
+    image :suprise5,
+    title:"🎉  Package Déco d’Anniversaire",
+    description: {
+      intro: "🎈 Une ambiance festive, colorée et inoubliable  pour petits et grands, ce package transforme chaque anniversaire en moment magique" 
+,
+      list: [
+        "🎊 Décoration complète personnalisée (ballons, guirlandes, thème au choix",
+        "🎷 Saxophoniste",
+        "🍰 Gâteau d’anniversaire sur mesure",
+        " 📸 Espace photo décoré pour souvenirs inoubliables",
+        "🎁 Table de cadeaux et accessoires festifs",
+      ],
+      outro: "🎂 Un anniversaire clé en main qui fera briller les yeux de vos invités !"
+    }
+  }
+,
+
+
+
+  {
+    id:10,
+    image :suprise4,
+    title:"💘 Package Saint-Valentin",
+    description: {
+      intro: "🌹 Une parenthèse romantique pour célébrer l’amourConçu pour une soirée inoubliable à deux, ce package allie tendresse, élégance et surprise " 
+,
+      list: [
+        "🕯️ Ambiance romantique (bougies, pétales de roses, lumière tamisée)",
+        "🎷 Saxophoniste",
+        "🍽️ Dîner en tête-à-tête (à domicile ou dans un lieu décoré)",
+        " 💌 Message d’amour personnalisé sur carte élégante",
+        "🌹 Bouquet de roses rouges",
+        "📸 Mini séance photo souvenir pour immortaliser l’instant",
+      ],
+      outro: "❤️ Le combo parfait pour faire battre les cœurs plus fort le 14 février (ou n’importe quel jour de l’année !)"
+    }
+  },
+
+
+  {
+    id:11,
+    image :suprise3,
+    title:"💍 Package Demande en Mariage",
+    description: {
+      intro: "✨ Une mise en scène magique pour un “oui” inoubliable Pensé pour créer l’émotion et marquer les esprits, ce package vous aide à poser LA question de façon unique :" 
+,
+      list: [
+        "🌅 Mise en scène romantique (lieu décoré selon vos envies : coucher de soleil, jardin, intérieur luxueux...)",
+        "🎷 Saxophoniste",
+        "💎 Présentation de la bague dans un écrin personnalisé",
+        "💌 Carte avec message sur mesure ou lettre d’amour à lire à voix haute",
+        "📸 Photographe discret pour capturer le moment magique"
+      ],
+    }
+  }
+,
+
+
+
+{
+  id:12,
+  image :livraison,
+  title:"🍽️ Package Livraison Délices Maison",
+  description: {
+    intro: "🚚 Des saveurs faites maison livrées directement chez." ,
+    list: [
+      "🍹 Jus naturels 100 % frais (gingembre, ananas, bissap, cocktail détox…)",
+      "🥞 Crêpes moelleuses, sucrées et salées selon vos envies",
+      " 🍔 Burgers maison bien garnis avec frites croustillantes",
+      "🍕 Pizzas généreuses, personnalisables (viande, végétarienne, fromage, spicy…)",
+      "🥠 Croquettes croustillantes (poulet, poisson ou légumes)",
+      "🎁 Emballage soigné, livraison rapide et possibilité de petit message personnalisé."
+    ],
+  }
+}
+
+
+
  
 ];
