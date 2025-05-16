@@ -413,6 +413,18 @@ button:hover{
 
 
 
+
+
+.feature-section{
+    background-color: rgb(206, 207, 207);
+    display: grid;
+    gap: 2rem;
+    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+
+
 /*HOME SERVICES DESIGN*/
 .container {
     transition: opacity 0.7s ease;
@@ -550,12 +562,230 @@ button:hover{
 
 
 
+/* Variables CSS - À définir une seule fois (si pas déjà fait) */
+:root {
+    --cream: #eee;
+    --forest: #2d4739;
+    --terracotta: #e57a44;
+    --muted-foreground: #6b7280;
+  }
+  
+  /* Feature Section Styles */
+  .feature-section {
+    padding: 4rem 0;
+    background-color: var(--cream);
+  }
+  
+  .feature-section .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .feature-section .header-section {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .feature-section h2 {
+    font-size: 1.875rem; /* 30px */
+    font-family: serif;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--forest);
+  }
+  
+  .feature-section .header-section p {
+    color: var(--muted-foreground);
+    max-width: 42rem;
+    margin: 0 auto;
+    line-height: 1.625;
+  }
+  
+  .features-grid {
+    display: grid;
+    gap: 2rem;
+    padding-top: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .features-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .feature-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .feature-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .feature-card h3 {
+    font-family: serif;
+    font-weight: 500;
+    font-size: 1.25rem; /* 20px */
+    margin-bottom: 0.5rem;
+    color: var(--forest);
+  }
+  
+  .feature-card p {
+    color: var(--muted-foreground);
+    line-height: 1.5;
+  }
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+/* How it Works Section */
+.how-it-works {
+    padding: 4rem 0;
+    background-color: white;
+  }
+  
+  .how-it-works .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .how-it-works .header-section {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .how-it-works h2 {
+    font-size: 1.875rem;
+    font-family: serif;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--forest);
+  }
+  
+  .how-it-works .header-section p {
+    color: var(--muted-foreground);
+    line-height: 1.625;
+  }
+  
+  .steps-grid {
+    display: grid;
+    gap: 2rem;
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+  
+  @media (min-width: 768px) {
+    .steps-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .step {
+    
+        background: white;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      
+  }
+  
+  .number-circle {
+    background-color: var(--cream);
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-family: serif;
+    font-weight: 700;
+    color: var(--terracotta);
+    margin: 0 auto 1rem;
+  }
+  
+  .step h3 {
+    font-family: serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--forest);
+  }
+  
+  .step p {
+    color: var(--muted-foreground);
+    line-height: 1.5;
+  }
+  
+  .cta-section {
+    text-align: center;
+    margin-top: 3rem;
+  }
+  
+  .cta-section button {
+    background-color: var(--terracotta);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+  }
+  
+  .cta-section button:hover {
+    background-color: rgba(229, 122, 68, 0.9);
+  }
+  
+  .cta-section a {
+    color: inherit;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+  }
+
+  .whatsapp-button {
+    display: inline-block;
+    background-color: #25D366; 
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .whatsapp-button:hover {
+    background-color: #128C7E; 
+  }
 
 
 

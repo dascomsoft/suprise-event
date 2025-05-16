@@ -9,7 +9,7 @@ import Reservation from './Pages/Reservation';
 import Connection from './Pages/Connection';
 import Administrateur from './Pages/Administrateur';
 import Client from './Pages/Client';
-
+import EventBot from './Components/EventBot';
 
 function App() {
 
@@ -17,6 +17,8 @@ function App() {
   return (
       <Router>
          <Navbar/>
+         <EventBot/>
+
           <Routes>
             <Route path ="/" element = {<Home />}/>
             <Route path ="/About" element = {<About/>}/> 
@@ -27,6 +29,7 @@ function App() {
             <Route path ="/Administrateur" element = {<Administrateur />}/>
             <Route path ="/Client" element = {<Client />}/>
           </Routes>
+
    </Router>
   );
 }

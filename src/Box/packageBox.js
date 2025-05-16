@@ -1,7 +1,7 @@
 
 
 import party from "../assets/party.jpg";
-import bouquet1 from "../assets/bouquet1.webp";
+import bouquet1 from "../assets/suprise2.jpg";
 import bouquet from "../assets/cake1.jpg";
 import party3 from "../assets/party3.jpg";
 import party1 from "../assets/party1.jpg";
