@@ -16,8 +16,8 @@ const About = () => {
         <div className='container'>
           <div className="about-container">
             <div className="about-text">
-              <h2 className="about-title mb-3 display-4">🎉 À propos de Drindsud Surprise Event</h2>
-              <p className='lead'>Chez Drindsud Surprise Event, nous croyons que chaque instant mérite d’être célébré de manière unique, originale et mémorable.
+              <h2 className="about-title mb-3 display-4">🎉 À propos de Drinsud Surprise Event</h2>
+              <p className='lead'>Chez Drinsud Surprise Event, nous croyons que chaque instant mérite d’être célébré de manière unique, originale et mémorable.
                 Basée sur la passion de créer l’émotion et la magie, notre entreprise événementielle est née du désir de sublimer vos plus beaux moments, qu’ils soient grands ou petits.</p>
               <p className='lead'>Depuis notre création, nous accompagnons particuliers et entreprises dans l'organisation de surprises et d’événements sur mesure, pensés dans les moindres détails pour refléter votre personnalité et vos envies. Qu'il s'agisse d'une demande en mariage féerique, d’un anniversaire inoubliable, d’un événement d’entreprise chic ou d’une baby shower remplie de douceur, Drindsud transforme chaque occasion en une véritable expérience.</p>
 
@@ -30,7 +30,7 @@ const About = () => {
       <div className="testimony-section">
         <div className='testi-header'>
           <h2 className="title-testi">Nos <span className='text-warning'>Valeurs</span></h2>
-          <p className='text-center  px-4'>Chez Drindsud, nos valeurs sont au cœur de chacune <br /> de nos prestations </p>
+          <p className='text-center  px-4'>Chez Drinsud, nos valeurs sont au cœur de chacune <br /> de nos prestations </p>
         </div>
         <div className="testimony-wrapper">
           <div className="testimony-container">

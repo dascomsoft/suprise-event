@@ -1,7 +1,6 @@
 .pricing-page {
-    padding: 220px 0;
+    padding: 220px 0 50px;
     background-color: #f9f9f9;
-    min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
   }

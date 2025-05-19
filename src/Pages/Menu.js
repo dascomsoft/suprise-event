@@ -8,8 +8,6 @@ import "../styles/Menu.css";
 
 
 
-
-
 const Menu = () => {
   useEffect(() => {
     // Faire défiler vers le haut au chargement de la page
@@ -91,7 +89,7 @@ const Menu = () => {
                 </button>
                 <a
                     href={`https://wa.me/237699377664?text=${encodeURIComponent(
-                      "Bonjour et bienvenue chez Drindsud — l’adresse incontournable pour des événements de prestige. Nous transformons vos moments spéciaux en souvenirs inoubliables, grâce à une organisation raffinée et un service de première classe.Chaque détail compte , que ce soit pour un anniversaire, une demande en mariage, une baby shower ou toute autre célébration, Drindsud Surprise Event transforme vos idées en réalité avec créativité, élégance et émotion..."
+                      "Bonjour et bienvenue chez Drinsud — l’adresse incontournable pour des événements de prestige. Nous transformons vos moments spéciaux en souvenirs inoubliables, grâce à une organisation raffinée et un service de première classe.Chaque détail compte , que ce soit pour un anniversaire, une demande en mariage, une baby shower ou toute autre célébration, Drindsud Surprise Event transforme vos idées en réalité avec créativité, élégance et émotion..."
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
