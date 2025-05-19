@@ -10,6 +10,7 @@ import Connection from './Pages/Connection';
 import Administrateur from './Pages/Administrateur';
 import Client from './Pages/Client';
 import EventBot from './Components/EventBot';
+import Prix from './Pages/Prix'
 
 function App() {
 
@@ -24,6 +25,8 @@ function App() {
             <Route path ="/About" element = {<About/>}/> 
             <Route path ="/Menu" element = {<Menu />}/>
             <Route path ="/Contact" element = {<Contact />}/>
+            <Route path ="/Prix" element = {<Prix />}/>
+
             <Route path ="/Reservation" element = {<Reservation />}/>
             <Route path ="/Connection" element = {<Connection />}/>
             <Route path ="/Administrateur" element = {<Administrateur />}/>

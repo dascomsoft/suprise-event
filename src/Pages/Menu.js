@@ -110,6 +110,22 @@ const Menu = () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <footer className="wrapper">
         <div className="container">
           <div className="footer-showcase">
@@ -184,16 +200,6 @@ const Menu = () => {
         <p class="text-center text-warning mt-5">&copy;Copyright all rights reserved, 2023 DASCOM Ltd</p>
 
       </footer>
-
-
-
-
-      
-
-
-
-
-
     </div>
   )
 }
