@@ -105,9 +105,9 @@ export const packageBox = [
         "🍰 Gâteau spécial baby shower (fille, garçon ou neutre)",
         "🍇 Panier garni gourmand",
         "🎁 Petits cadeaux pour les invités (souvenirs personnalisés)",
-        "📸 Mini séance photo souvenir",
+        // "📸 Mini séance photo souvenir",
       ],
-      outro: "👶 Un moment rempli de douceur, d’émotions et de complicité à partager entre proches."
+      // outro: "👶 Un moment rempli de douceur, d’émotions et de complicité à partager entre proches."
     }
   }
 
@@ -128,9 +128,9 @@ export const packageBox = [
         "🎷 Saxophoniste",
         "🍰 Gâteau d’anniversaire sur mesure",
         " 📸 Espace photo décoré pour souvenirs inoubliables",
-        "🎁 Table de cadeaux et accessoires festifs",
+        // "🎁 Table de cadeaux et accessoires festifs",
       ],
-      outro: "🎂 Un anniversaire clé en main qui fera briller les yeux de vos invités !"
+      // outro: "🎂 Un anniversaire clé en main qui fera briller les yeux de vos invités !"
     }
   }
 ,
@@ -145,14 +145,14 @@ export const packageBox = [
       intro: "🌹 Une parenthèse romantique pour célébrer l’amourConçu pour une soirée inoubliable à deux, ce package allie tendresse, élégance et surprise " 
 ,
       list: [
-        "🕯️ Ambiance romantique (bougies, pétales de roses, lumière tamisée)",
+        // "🕯️ Ambiance romantique (bougies, pétales de roses, lumière tamisée)",
         "🎷 Saxophoniste",
         "🍽️ Dîner en tête-à-tête (à domicile ou dans un lieu décoré)",
         " 💌 Message d’amour personnalisé sur carte élégante",
         "🌹 Bouquet de roses rouges",
         "📸 Mini séance photo souvenir pour immortaliser l’instant",
       ],
-      outro: "❤️ Le combo parfait pour faire battre les cœurs plus fort le 14 février (ou n’importe quel jour de l’année !)"
+      // outro: "❤️ Le combo parfait pour faire battre les cœurs plus fort le 14 février (ou n’importe quel jour de l’année !)"
     }
   },
 
@@ -162,14 +162,14 @@ export const packageBox = [
     image :suprise3,
     title:"💍 Package Demande en Mariage",
     description: {
-      intro: "✨ Une mise en scène magique pour un “oui” inoubliable Pensé pour créer l’émotion et marquer les esprits, ce package vous aide à poser LA question de façon unique :" 
+      intro: "✨ Une mise en scène magique pour un “oui” inoubliable Pensé pour créer l’émotion et marquer les esprits:" 
 ,
       list: [
         "🌅 Mise en scène romantique (lieu décoré selon vos envies : coucher de soleil, jardin, intérieur luxueux...)",
         "🎷 Saxophoniste",
         "💎 Présentation de la bague dans un écrin personnalisé",
         "💌 Carte avec message sur mesure ou lettre d’amour à lire à voix haute",
-        "📸 Photographe discret pour capturer le moment magique"
+        // "📸 Photographe discret pour capturer le moment magique"
       ],
     }
   }
@@ -189,7 +189,7 @@ export const packageBox = [
       " 🍔 Burgers maison bien garnis avec frites croustillantes",
       "🍕 Pizzas généreuses, personnalisables (viande, végétarienne, fromage, spicy…)",
       "🥠 Croquettes croustillantes (poulet, poisson ou légumes)",
-      "🎁 Emballage soigné, livraison rapide et possibilité de petit message personnalisé."
+      // "🎁 Emballage soigné, livraison rapide et possibilité de petit message personnalisé."
     ],
   }
 }
