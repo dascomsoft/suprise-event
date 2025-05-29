@@ -52,6 +52,11 @@ const pricingData = [
     price: "À partir de 200 000 FCFA",
     description: "Créez le décor parfait pour poser LA grande question avec émotion et élégance."
   },
+   {
+    title: "Package Accueil à l’aéroport ",
+    price: "À partir de 60 000 FCFA",
+    description: "Offrez à vos proches de la diaspora un retour au pays digne des plus beaux souvenirs, avec un accueil sur-mesure qui allie chaleur, émotion et raffinement."
+  },
 ];
 
 const PricingPage = () => {

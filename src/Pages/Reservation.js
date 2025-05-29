@@ -112,8 +112,8 @@ function Register() {
 
   return (
 
-    <div style={{ paddingTop: 150 }}>
-      <div className="register-container" style={{marginBottom:60}}>
+    <div style={{ paddingTop:200 }}>
+      <div className="register-container" style={{marginBottom:20}}>
         <h1>Création de Compte</h1>
         {error && <p className="error-message">{error}</p>}
 
