@@ -1,8 +1,8 @@
-// firebase-config.js
-import { initializeApp} from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore} from "firebase/firestore";
 
+
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -13,10 +13,15 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
-// Initialiser Firebase uniquement si aucune instance n'existe déjà
+// Initialiser l'application principale
 const app = initializeApp(firebaseConfig);
 
- export const auth = getAuth(app);
+// Initialiser une deuxième application pour la création d'utilisateurs
+const secondaryApp = initializeApp(firebaseConfig, "Secondary");
+
+// Export des authentifications
+export const auth = getAuth(app); // Pour la session principale
+export const secondaryAuth = getAuth(secondaryApp); // Pour créer des utilisateurs sans déconnexion
 export const db = getFirestore(app);
 
 export default app;

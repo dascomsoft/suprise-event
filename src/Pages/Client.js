@@ -1,5 +1,6 @@
 
 
+
 import React, { useState, useEffect } from "react";
 import {
   doc,
@@ -14,17 +15,29 @@ import {
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../firebase-config";
-import "../styles/Client.css"
+import "../styles/Client.css";
 
 const ClientDashboard = () => {
   const [clientData, setClientData] = useState(null);
   const [bookings, setBookings] = useState([]);
+  const [customPackages, setCustomPackages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isBooking, setIsBooking] = useState(false);
   const [clientResponse, setClientResponse] = useState("");
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const [ratings, setRatings] = useState({});
   const [comments, setComments] = useState({});
+
+  // État pour la personnalisation de package
+  const [isCustomizing, setIsCustomizing] = useState(false);
+  const [customPackageName, setCustomPackageName] = useState("");
+  const [customPackageDescription, setCustomPackageDescription] = useState("");
+  const [customPackageElements, setCustomPackageElements] = useState("");
+  const [customPackageBudget, setCustomPackageBudget] = useState("");
+  const [customPackageDate, setCustomPackageDate] = useState("");
+  const [customPackageTime, setCustomPackageTime] = useState("");
+  const [customPackageLocation, setCustomPackageLocation] = useState("");
+  const [isSubmittingCustom, setIsSubmittingCustom] = useState(false);
 
   const packages = ["Package Inoubliable", "Package Premium", "Package Bonheur", "Package Classique", "Package Prestige"];
   const daysOfWeek = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
@@ -47,6 +60,7 @@ const ClientDashboard = () => {
         if (clientDocSnap.exists()) {
           setClientData({ id: user.uid, ...clientDocSnap.data() });
 
+          // Charger les réservations
           const bookingsQuery = query(collection(db, "bookings"), where("userId", "==", user.uid));
           const bookingsSnapshot = await getDocs(bookingsQuery);
 
@@ -56,6 +70,18 @@ const ClientDashboard = () => {
               ...doc.data(),
             }));
             setBookings(clientBookings);
+          }
+
+          // Charger les packages personnalisés
+          const customPackagesQuery = query(collection(db, "customPackages"), where("userId", "==", user.uid));
+          const customPackagesSnapshot = await getDocs(customPackagesQuery);
+
+          if (!customPackagesSnapshot.empty) {
+            const clientCustomPackages = customPackagesSnapshot.docs.map((doc) => ({
+              id: doc.id,
+              ...doc.data(),
+            }));
+            setCustomPackages(clientCustomPackages);
           }
         }
       }
@@ -113,6 +139,70 @@ const ClientDashboard = () => {
     }
   };
 
+  const submitCustomPackage = async () => {
+    if (!clientData) {
+      alert("Vous devez être connecté pour soumettre un package personnalisé");
+      return;
+    }
+
+    if (!customPackageName || !customPackageDescription || !customPackageElements) {
+      alert("Veuillez remplir tous les champs obligatoires (Nom, Description, Éléments)");
+      return;
+    }
+
+    setIsSubmittingCustom(true);
+    try {
+      const customPackageData = {
+        userId: clientData.id,
+        clientName: clientData.nom,
+        clientEmail: clientData.email,
+        clientPhone: clientData.telephone,
+        packageName: customPackageName,
+        packageDescription: customPackageDescription,
+        packageElements: customPackageElements,
+        budget: customPackageBudget || "Non spécifié",
+        preferredDate: customPackageDate || "Non spécifié",
+        preferredTime: customPackageTime || "Non spécifié",
+        location: customPackageLocation || "Non spécifié",
+        status: "pending", // pending, approved, rejected, priced
+        adminPrice: "",
+        adminResponse: "",
+        adminName: "",
+        adminPhone: "",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+
+      await addDoc(collection(db, "customPackages"), customPackageData);
+
+      // Recharger les packages personnalisés
+      const customPackagesQuery = query(collection(db, "customPackages"), where("userId", "==", clientData.id));
+      const customPackagesSnapshot = await getDocs(customPackagesQuery);
+      const clientCustomPackages = customPackagesSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setCustomPackages(clientCustomPackages);
+
+      // Réinitialiser le formulaire
+      setCustomPackageName("");
+      setCustomPackageDescription("");
+      setCustomPackageElements("");
+      setCustomPackageBudget("");
+      setCustomPackageDate("");
+      setCustomPackageTime("");
+      setCustomPackageLocation("");
+      setIsCustomizing(false);
+
+      alert("Votre package personnalisé a été soumis avec succès ! L'administrateur vous répondra bientôt.");
+    } catch (error) {
+      console.error("Erreur de soumission du package personnalisé:", error);
+      alert("Une erreur est survenue lors de la soumission. Veuillez réessayer.");
+    } finally {
+      setIsSubmittingCustom(false);
+    }
+  };
+
   const respondToAdmin = async (bookingId) => {
     if (!clientResponse) return;
 
@@ -165,17 +255,17 @@ const ClientDashboard = () => {
       });
 
       const updatedBookings = bookings.map((booking) =>
-        booking.id === bookingId 
-          ? { 
-              ...booking, 
-              rating: ratings[bookingId], 
-              comment: comments[bookingId] || "",
-              ratedAt: new Date() 
-            } 
+        booking.id === bookingId
+          ? {
+            ...booking,
+            rating: ratings[bookingId],
+            comment: comments[bookingId] || "",
+            ratedAt: new Date()
+          }
           : booking
       );
       setBookings(updatedBookings);
-      setComments({...comments, [bookingId]: ""});
+      setComments({ ...comments, [bookingId]: "" });
     } catch (error) {
       console.error("Erreur d'envoi de l'évaluation:", error);
     }
@@ -200,8 +290,171 @@ const ClientDashboard = () => {
         </div>
 
         <div className="dashboard-content">
+          {/* Section Package Personnalisé */}
+          <div className="custom-package-section">
+            <div className="section-header">
+              <h2>✨ Créer votre Package Personnalisé</h2>
+              <p>Vous avez une idée unique ? Créez votre propre package sur mesure !</p>
+              {!isCustomizing ? (
+                <button 
+                  className="btn-customize" 
+                  onClick={() => setIsCustomizing(true)}
+                >
+                  + Créer un Package Personnalisé
+                </button>
+              ) : (
+                <button 
+                  className="btn-cancel" 
+                  onClick={() => setIsCustomizing(false)}
+                >
+                  Annuler
+                </button>
+              )}
+            </div>
+
+            {isCustomizing && (
+              <div className="custom-package-form">
+                <h3>Formulaire de Personnalisation</h3>
+                <div className="form-group">
+                  <label>Nom de votre package *</label>
+                  <input
+                    type="text"
+                    value={customPackageName}
+                    onChange={(e) => setCustomPackageName(e.target.value)}
+                    placeholder="Ex: Package Anniversaire Surprise Romantique"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Description détaillée *</label>
+                  <textarea
+                    value={customPackageDescription}
+                    onChange={(e) => setCustomPackageDescription(e.target.value)}
+                    placeholder="Décrivez votre idée, l'occasion, l'ambiance souhaitée..."
+                    rows={3}
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Éléments souhaités *</label>
+                  <textarea
+                    value={customPackageElements}
+                    onChange={(e) => setCustomPackageElements(e.target.value)}
+                    placeholder="Listez les éléments que vous souhaitez inclure (ex: saxophoniste, gâteau, décoration, bouquet, etc.)"
+                    rows={3}
+                    required
+                  />
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Budget approximatif</label>
+                    <input
+                      type="text"
+                      value={customPackageBudget}
+                      onChange={(e) => setCustomPackageBudget(e.target.value)}
+                      placeholder="Ex: 200-300€"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>Date souhaitée</label>
+                    <input
+                      type="date"
+                      value={customPackageDate}
+                      onChange={(e) => setCustomPackageDate(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Heure souhaitée</label>
+                    <input
+                      type="time"
+                      value={customPackageTime}
+                      onChange={(e) => setCustomPackageTime(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>Lieu</label>
+                    <input
+                      type="text"
+                      value={customPackageLocation}
+                      onChange={(e) => setCustomPackageLocation(e.target.value)}
+                      placeholder="Adresse ou ville"
+                    />
+                  </div>
+                </div>
+
+                <button 
+                  className="btn-submit-custom" 
+                  onClick={submitCustomPackage}
+                  disabled={isSubmittingCustom}
+                >
+                  {isSubmittingCustom ? "Envoi en cours..." : "Soumettre mon Package"}
+                </button>
+
+                <p className="form-note">
+                  * Champs obligatoires. Notre équipe vous contactera avec un devis personnalisé.
+                </p>
+              </div>
+            )}
+
+            {/* Liste des packages personnalisés soumis */}
+            {customPackages.length > 0 && (
+              <div className="custom-packages-list">
+                <h3>Mes Packages Personnalisés Soumis</h3>
+                <div className="packages-grid">
+                  {customPackages.map((pkg) => (
+                    <div key={pkg.id} className={`custom-package-card status-${pkg.status}`}>
+                      <div className="package-header">
+                        <h4>{pkg.packageName}</h4>
+                        <span className={`status-badge ${pkg.status}`}>
+                          {pkg.status === "pending" && "⏳ En attente"}
+                          {pkg.status === "approved" && "✅ Approuvé"}
+                          {pkg.status === "rejected" && "❌ Refusé"}
+                          {pkg.status === "priced" && "💰 Prix proposé"}
+                        </span>
+                      </div>
+                      
+                      <div className="package-details">
+                        <p><strong>Description:</strong> {pkg.packageDescription}</p>
+                        <p><strong>Éléments:</strong> {pkg.packageElements}</p>
+                        <p><strong>Budget:</strong> {pkg.budget}</p>
+                        <p><strong>Date:</strong> {pkg.preferredDate}</p>
+                        <p><strong>Heure:</strong> {pkg.preferredTime}</p>
+                        <p><strong>Lieu:</strong> {pkg.location}</p>
+                        <p><strong>Soumis le:</strong> {new Date(pkg.createdAt?.seconds * 1000).toLocaleDateString()}</p>
+                      </div>
+
+                      {pkg.adminResponse && (
+                        <div className="admin-response">
+                          <h5>📩 Réponse de l'administrateur:</h5>
+                          <p>{pkg.adminResponse}</p>
+                          {pkg.adminPrice && (
+                            <p className="price-offer">
+                              <strong>💰 Prix proposé:</strong> {pkg.adminPrice}
+                            </p>
+                          )}
+                          {pkg.adminName && (
+                            <p><strong>Contact admin:</strong> {pkg.adminName} ({pkg.adminPhone})</p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Section Réservation standard */}
           <div className="booking-form">
-            <h2>Réserver un package</h2>
+            <h2>Réserver un package standard</h2>
             <form onSubmit={(e) => {
               e.preventDefault();
               const formData = new FormData(e.target);
@@ -248,6 +501,7 @@ const ClientDashboard = () => {
             </form>
           </div>
 
+          {/* Section Mes Réservations */}
           <div className="bookings-list">
             <h2>Mes Réservations</h2>
             {bookings.length === 0 ? (
@@ -294,14 +548,21 @@ const ClientDashboard = () => {
                           <h4>Évaluer cette réservation</h4>
                           <div className="stars">
                             {[1, 2, 3, 4, 5].map((star) => (
-                              <span
+                              <svg
                                 key={star}
                                 onClick={() =>
                                   setRatings({ ...ratings, [booking.id]: star })
                                 }
+                                className={`star ${(ratings[booking.id] || 0) >= star ? "selected" : ""}`}
+                                width="30"
+                                height="30"
+                                viewBox="0 0 24 24"
                               >
-                                {(ratings[booking.id] || 0) >= star ? "★" : "☆"}
-                              </span>
+                                <path
+                                  d="M12 .587l3.668 7.57L24 9.748l-6 5.848L19.335 24 12 20.202 4.665 24 6 15.596 0 9.748l8.332-1.591z"
+                                  fill="currentColor"
+                                />
+                              </svg>
                             ))}
                           </div>
                           <textarea
@@ -321,9 +582,18 @@ const ClientDashboard = () => {
                           <h4>Votre évaluation</h4>
                           <div className="stars">
                             {[1, 2, 3, 4, 5].map((star) => (
-                              <span key={star}>
-                                {(booking.rating || 0) >= star ? "★" : "☆"}
-                              </span>
+                              <svg
+                                key={star}
+                                className={`star ${(booking.rating || 0) >= star ? "selected" : ""}`}
+                                width="30"
+                                height="30"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M12 .587l3.668 7.57L24 9.748l-6 5.848L19.335 24 12 20.202 4.665 24 6 15.596 0 9.748l8.332-1.591z"
+                                  fill="currentColor"
+                                />
+                              </svg>
                             ))}
                           </div>
                           {booking.comment && <p>{booking.comment}</p>}

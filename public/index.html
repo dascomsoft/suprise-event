@@ -1,48 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
+    <!-- CHARSET -->
     <meta charset="utf-8" />
-    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Sacramento&family=Satisfy&display=swap" rel="stylesheet">
-   
+
+    <!-- MOBILE RESPONSIVE -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+  <!-- FAVICON -->
+  <link rel="icon" type="image/jpeg" href="%PUBLIC_URL%/logo.jpg" />
+    <!-- CANONICAL URL (à modifier avec ton domaine final) -->
+    <link rel="canonical" href="https://www.drindsudevent.com/" />
+
+    <!-- TITLE SEO OPTIMISÉ -->
+    <title>DrindSud Surprise Event | SaaS Événementiel Cameroun – Décorateurs, Photographes, Traiteurs</title>
+
+    <!-- META DESCRIPTION PROFESSIONNELLE -->
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="DrindSud Surprise Event est un SaaS événementiel au Cameroun permettant aux décorateurs, photographes et traiteurs de gérer leurs services, recevoir des commandes, créer des packages personnalisés et s'abonner à des offres professionnelles. Paiement via Orange Money & MTN MoMo."
     />
+
+    <!-- KEYWORDS (Google ne les utilise plus mais bon pour SEO secondaire) -->
+    <meta
+      name="keywords"
+      content="SaaS Event Cameroun, Événementiel Cameroun, Décoration événementielle, Photographe Cameroun, Traiteur Cameroun, Surprise Event, gestion événementielle, réservation événement Cameroun, Orange Money, MTN MoMo"
+    />
+
+    <!-- THEME COLOR -->
+    <meta name="theme-color" content="#000000" />
+
+    <!-- OPEN GRAPH (Facebook, WhatsApp, Instagram) -->
+    <meta property="og:title" content="DrindSud Surprise Event | Plateforme SaaS pour Décorateurs & Prestataires au Cameroun" />
+    <meta property="og:description" content="Gérez vos services, recevez des commandes, proposez des packages, créez des offres et développez votre activité événementielle au Cameroun." />
+    <meta property="og:image" content="https://www.drindsudevent.com/cover.jpg" />
+    <meta property="og:url" content="https://www.drindsudevent.com/" />
+    <meta property="og:type" content="website" />
+
+    <!-- TWITTER CARDS -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DrindSud Surprise Event | SaaS Événementiel Cameroun" />
+    <meta name="twitter:description" content="Plateforme puissante pour prestataires événementiels camerounais : décorateurs, traiteurs, photographes, DJ, etc." />
+    <meta name="twitter:image" content="https://www.drindsudevent.com/cover.jpg" />
+
+    <!-- PRECONNECT / PERFORMANCE -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Sacramento&family=Satisfy&display=swap" rel="stylesheet">
+
+    <!-- ICONES -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <!-- APPLE ICON -->
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
+
+    <!-- MANIFEST -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>DrindSudEvent</title>
+    <!-- DONNÉES STRUCTURÉES SCHEMA.ORG POUR GOOGLE -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "DrindSud Surprise Event",
+      "url": "https://www.drindsudevent.com",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "SaaS événementiel pour décorateurs, photographes et traiteurs permettant de gérer commandes, abonnements, packages et services.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "XAF"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "DrindSud",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "CM",
+          "addressRegion": "Littoral",
+          "addressLocality": "Douala"
+        }
+      }
+    }
+    </script>
   </head>
+
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>Veuillez activer JavaScript pour utiliser la plateforme DrindSud Surprise Event.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>
+

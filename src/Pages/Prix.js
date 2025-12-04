@@ -1,168 +1,267 @@
 
 
 
-
-import { useEffect } from 'react';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import '../styles/PricingPage.css';
 
 const pricingData = [
-  {
-    title: "Package Classique",
-    price: "À partir de 50 000 FCFA",
-    description: "Une formule simple mais élégante pour faire plaisir à vos proches avec style."
-  },
-  {
-    title: "Package Prestige",
-    price: "À partir de 80 000 FCFA",
-    description: "Une expérience raffinée et mémorable pour sublimer chaque instant spécial."
-  },
-  {
-    title: "Package Bonheur",
-    price: "À partir de 100 000 FCFA",
-    description: "Offrez une touche de bonheur et de douceur avec une mise en scène chaleureuse."
-  },
-  {
-    title: "Package Inoubliable",
-    price: "À partir de 60 000 FCFA",
-    description: "Gravez des souvenirs durables dans le cœur de vos proches avec cette formule."
-  },
-  {
-    title: "Package Premium",
-    price: "150 000 FCFA",
-    description: "Un événement haut de gamme avec prestations personnalisées et shooting photo."
-  },
-  {
-    title: "Package Baby Shower",
-    price: "À partir de 200 000 FCFA",
-    description: "Célébrez l’arrivée de bébé avec une décoration féerique et une ambiance joyeuse."
-  },
-  {
-    title: "Package Décoration d'anniversaire",
-    price: "À partir de 100 000 FCFA",
-    description: "Une décoration sur-mesure pour rendre chaque anniversaire vraiment magique."
-  },
-  {
-    title: "Package St Valentin",
-    price: "À partir de 150 000 FCFA",
-    description: "Surprenez votre moitié avec une déclaration d’amour inoubliable et romantique."
-  },
-  {
-    title: "Package Demande en mariage",
-    price: "À partir de 200 000 FCFA",
-    description: "Créez le décor parfait pour poser LA grande question avec émotion et élégance."
-  },
-   {
-    title: "Package Accueil à l’aéroport ",
-    price: "À partir de 60 000 FCFA",
-    description: "Offrez à vos proches de la diaspora un retour au pays digne des plus beaux souvenirs, avec un accueil sur-mesure qui allie chaleur, émotion et raffinement."
-  },
+  { title: "Package Classique", price: "50 000 FCFA", desc: "Élégance minimaliste pour une surprise réussie.", popular: false },
+  { title: "Package Prestige", price: "80 000 FCFA", desc: "Raffinement et attention portée aux moindres détails.", popular: false },
+  { title: "Package Bonheur", price: "100 000 FCFA", desc: "Une explosion de douceur et d’émotion pure.", popular: true },
+  { title: "Package Inoubliable", price: "60 000 FCFA", desc: "Des souvenirs gravés à jamais dans les cœurs.", popular: false },
+  { title: "Package Premium", price: "150 000 FCFA", desc: "Service sur-mesure, shooting photo professionnel inclus.", popular: false },
+  { title: "Package Baby Shower", price: "200 000 FCFA", desc: "Célébration féerique pour l’arrivée de bébé.", popular: false },
+  { title: "Package Anniversaire", price: "100 000 FCFA", desc: "Décoration couture pour un anniversaire d’exception.", popular: false },
+  { title: "Package Saint-Valentin", price: "150 000 FCFA", desc: "Une déclaration d’amour spectaculaire et romantique.", popular: false },
+  { title: "Package Demande en Mariage", price: "200 000 FCFA", desc: "Le moment parfait, mis en scène avec émotion et élégance.", popular: true },
+  { title: "Package Accueil Aéroport", price: "60 000 FCFA", desc: "Retour au pays inoubliable, digne des plus grands films.", popular: false },
+];
+
+const testimonials = [
+  { name: "Carine & Ulrich", text: "Ma demande en mariage était absolument parfaite. Des larmes, des cris, de l’émotion… Merci Drindsud.", event: "Demande en mariage" },
+  { name: "Famille Mbarga", text: "L’accueil de ma mère à l’aéroport Nsimalen restera gravé à jamais. Professionnalisme 5 étoiles.", event: "Accueil diaspora" },
+  { name: "Stella", text: "Ma baby shower était digne d’un conte de fées. Tout était sublime.", event: "Baby Shower" },
 ];
 
 const PricingPage = () => {
-  useEffect(() => {
-    // Faire défiler vers le haut au chargement de la page
-    window.scrollTo(0, 0);
-  }, []);
-  return (
-    <div>
-      <div className='container'>
-        <div className="pricing-page">
-          <h1 className="title">Nos Offres & Tarifs</h1>
-          <p className="intro">
-            Choisissez parmi nos formules celle qui correspond le mieux à vos envies et à votre budget. Chaque expérience est conçue pour rendre votre moment unique.
-          </p>
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
-          <div className="pricing-grid">
-            {pricingData.map((item, index) => (
-              <div key={index} className="pricing-card">
-                <h2 className="card-title">{item.title}</h2>
-                <p className="card-price">{item.price}</p>
-                <p className="card-description">{item.description}</p>
-              </div>
+  return (
+    <>
+      {/* HERO LUXE */}
+      <motion.section className="hero-luxe">
+        <div className="hero-overlay"></div>
+        <motion.div className="hero-content"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.4, ease: "easeOut" }}
+        >
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 1.2 }}
+          >
+            Drindsud<br />Surprise Event
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 1 }}
+          >
+            Nous ne créons pas des événements.<br />
+            Nous créons des souvenirs qui durent toute une vie.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.4 }}
+          >
+            <a href="#packages" className="cta-gold">Découvrir nos offres</a>
+          </motion.div>
+        </motion.div>
+      </motion.section>
+
+      {/* PRICING SECTION */}
+      <section className="pricing-luxe" id="packages">
+        <div className="container">
+          <motion.div className="section-title"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2>Nos Formules d’Exception</h2>
+            <p className="subtitle">Chaque détail est pensé pour sublimer votre moment</p>
+          </motion.div>
+
+          <motion.div className="pricing-grid-luxe"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            {pricingData.map((item, i) => (
+              <motion.div
+                key={i}
+                className={`card-luxe ${item.popular ? 'popular' : ''}`}
+                variants={{
+                  hidden: { y: 80, opacity: 0 },
+                  visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } }
+                }}
+                whileHover={{ y: -15, transition: { duration: 0.4 } }}
+              >
+                {item.popular && <span className="ribbon">Best-seller</span>}
+                <h3>{item.title}</h3>
+                <div className="price-luxe">
+                  <span>À partir de</span>
+                  <strong>{item.price}</strong>
+                </div>
+                <p>{item.desc}</p>
+                {/* <motion.button
+                  className="btn-select"
+                  whileHover={{ backgroundColor: "#41403fff" }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Choisir cette formule
+                </motion.button> */}
+                <motion.a
+                  href="https://wa.me/237699377664" // remplace par ton numéro WhatsApp
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-select"
+                  whileHover={{ backgroundColor: "#41403fff" }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Choisir cette formule
+                </motion.a>
+
+
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* TÉMOIGNAGES */}
+      <section className="testimonials-luxe">
+        <div className="container">
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >Ils ont vécu l’expérience Drindsud</motion.h2>
+          <div className="testi-grid-luxe">
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={i}
+                className="testi-card-luxe"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2 }}
+                viewport={{ once: true }}
+              >
+                <p className="quote">“{t.text}”</p>
+                <p className="author">— {t.name} <span>{t.event}</span></p>
+              </motion.div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
-
-
-
-      <footer className="wrapper">
-        <div className="container">
-          <div className="footer-showcase">
-            <div className="foot-a">
-              <h3 className='display-5'>FOLLOW US</h3>
-              <p>Follow us on social media</p>
-              <i>
-                <a href='https://www.facebook.com/share/1KaSEYsuHb/' target="_blank" rel="noopener noreferrer">
-                  <svg class="social-icon" fill="orange" width="20px" height="20px" viewBox="-7 -2 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" className="jam jam-facebook"><path d='M2.046 3.865v2.748H.032v3.36h2.014v9.986H6.18V9.974h2.775s.26-1.611.386-3.373H6.197V4.303c0-.343.45-.805.896-.805h2.254V0H6.283c-4.34 0-4.237 3.363-4.237 3.865z' /></svg>
-                </a>
-              </i>
-
-              <i className='ms-3'>
-                <a href={`https://wa.me/237699377664?text=${encodeURIComponent(
-                  "Bonjour et bienvenue chez Drindsud — l’adresse incontournable pour des événements de prestige. Nous transformons vos moments spéciaux en souvenirs inoubliables, grâce à une organisation raffinée et un service de première classe.Chaque détail compte , que ce soit pour un anniversaire, une demande en mariage, une baby shower ou toute autre célébration, Drindsud Surprise Event transforme vos idées en réalité avec créativité, élégance et émotion..."
-                )}`}
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  <svg class="social-icon" fill="orange" width="20px" height="20px" viewBox="-2 -2 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" className="jam jam-whatsapp"><path d='M9.516.012C4.206.262.017 4.652.033 9.929a9.798 9.798 0 0 0 1.085 4.465L.06 19.495a.387.387 0 0 0 .47.453l5.034-1.184a9.981 9.981 0 0 0 4.284 1.032c5.427.083 9.951-4.195 10.12-9.58C20.15 4.441 15.351-.265 9.516.011zm6.007 15.367a7.784 7.784 0 0 1-5.52 2.27 7.77 7.77 0 0 1-3.474-.808l-.701-.347-3.087.726.65-3.131-.346-.672A7.62 7.62 0 0 1 2.197 9.9c0-2.07.812-4.017 2.286-5.48a7.85 7.85 0 0 1 5.52-2.271c2.086 0 4.046.806 5.52 2.27a7.672 7.672 0 0 1 2.287 5.48c0 2.052-.825 4.03-2.287 5.481z' /><path d='M14.842 12.045l-1.931-.55a.723.723 0 0 0-.713.186l-.472.478a.707.707 0 0 1-.765.16c-.913-.367-2.835-2.063-3.326-2.912a.694.694 0 0 1 .056-.774l.412-.53a.71.71 0 0 0 .089-.726L7.38 5.553a.723.723 0 0 0-1.125-.256c-.539.453-1.179 1.14-1.256 1.903-.137 1.343.443 3.036 2.637 5.07 2.535 2.349 4.566 2.66 5.887 2.341.75-.18 1.35-.903 1.727-1.494a.713.713 0 0 0-.408-1.072z' /></svg>
-                </a>
-              </i>
-
-              <i className='ms-3'>
-                <svg class="social-icon" width="20px" height="20px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="orange"><path fill="orange" fill-rule="evenodd" d="M13.478 3.399c.6.161 1.072.634 1.234 1.234C15 5.728 15 8 15 8s0 2.272-.288 3.367a1.754 1.754 0 01-1.234 1.234C12.382 12.89 8 12.89 8 12.89s-4.382 0-5.478-.289a1.754 1.754 0 01-1.234-1.234C1 10.283 1 8 1 8s0-2.272.288-3.367c.162-.6.635-1.073 1.234-1.234C3.618 3.11 8 3.11 8 3.11s4.382 0 5.478.289zm-3.24 4.612l-3.645 2.1V5.9l3.644 2.11z" clip-rule="evenodd" /></svg>
-
-              </i>
-
-              <i className='ms-3'>
-                <svg fill="orange" width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path d="M22,5.8a8.49,8.49,0,0,1-2.36.64,4.13,4.13,0,0,0,1.81-2.27,8.21,8.21,0,0,1-2.61,1,4.1,4.1,0,0,0-7,3.74A11.64,11.64,0,0,1,3.39,4.62a4.16,4.16,0,0,0-.55,2.07A4.09,4.09,0,0,0,4.66,10.1,4.05,4.05,0,0,1,2.8,9.59v.05a4.1,4.1,0,0,0,3.3,4A3.93,3.93,0,0,1,5,13.81a4.9,4.9,0,0,1-.77-.07,4.11,4.11,0,0,0,3.83,2.84A8.22,8.22,0,0,1,3,18.34a7.93,7.93,0,0,1-1-.06,11.57,11.57,0,0,0,6.29,1.85A11.59,11.59,0,0,0,20,8.45c0-.17,0-.35,0-.53A8.43,8.43,0,0,0,22,5.8Z" /></svg>
-              </i>
-
-            </div>
-            <div className="foot-b">
-              <h3 className='display-5'>GET IN TOUCH</h3>
-              <div class="d-flex">
-                <p>
-                  <svg fill="orange" width="20px" height="20px" viewBox="-3 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                    <g id="Group_31" data-name="Group 31" transform="translate(-241.002 -321.05)">
-                      <path id="Path_296" data-name="Path 296" d="M267,349.05v-24a4,4,0,0,0-4-4H245a4,4,0,0,0-4,4v24a4,4,0,0,0,4,4h18A4,4,0,0,0,267,349.05Zm-22,0v-24h18v24Z" />
-                      <rect id="Rectangle_6" data-name="Rectangle 6" width="10" height="12" transform="translate(249.002 329.05)" />
-                      <rect id="Rectangle_7" data-name="Rectangle 7" width="18" height="4" transform="translate(245.002 345.05)" />
-                    </g>
-                  </svg>
-                </p>
-                <p class="ms-2">Tel:699377664</p>
-              </div>
-              <div class="d-flex">
-                <p>
-                  <svg fill="orange" width="20px" height="20px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" ><title>mail</title><path d="M64 128Q64 113 73 105 81 96 96 96L416 96Q431 96 440 105 448 113 448 128L448 144 256 272 64 144 64 128ZM256 328L448 200 448 384Q448 416 416 416L96 416Q64 416 64 384L64 200 256 328Z" /></svg>
-                </p>
-                <p class="ms-2">Email: wambolecourant@yahoo.fr</p>
-              </div>
-              <div class="d-flex">
-                <p>
-                  <svg fill="orange" width="20px" height="20px" viewBox="0 0 24 24" version="UT1.2" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg"><path d="M17.657 5.304c-3.124-3.073-8.189-3.073-11.313 0-3.124 3.074-3.124 8.057 0 11.13l5.656 5.565 5.657-5.565c3.124-3.073 3.124-8.056 0-11.13zm-5.657 8.195c-.668 0-1.295-.26-1.768-.732-.975-.975-.975-2.561 0-3.536.472-.472 1.1-.732 1.768-.732s1.296.26 1.768.732c.975.975.975 2.562 0 3.536-.472.472-1.1.732-1.768.732z" /></svg>
-                </p>
-                <p class="ms-2">155 Charles Antagana Street , Yaounde-Cameroun</p>
-              </div>
-            </div>
-            <div className="foot-a">
-              <h3 className='display-5'>PACKAGES</h3>
-              <p>Package Bonheur</p>
-              <p>Package Classique</p>
-              <p>Package Prestige</p>
-              <p>Package Premium</p>
-              <p>Package Inoubliable</p>
-
-            </div>
-
+      {/* CTA FINAL */}
+      <section className="cta-final-luxe">
+        <motion.div className="container"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          <h2>Votre moment d’exception commence maintenant</h2>
+          <p>Contactez-nous pour un devis 100% personnalisé</p>
+          <div className="cta-buttons">
+            <motion.a href="https://wa.me/237699377664" className="btn-whatsapp-luxe"
+              whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              WhatsApp Direct
+            </motion.a>
+            <motion.a href="tel:+237699377664" className="btn-call-luxe"
+              whileHover={{ scale: 1.05 }}>
+              Appeler +237 699 377 664
+            </motion.a>
           </div>
-        </div>
-        <p class="text-center text-warning mt-5">&copy;Copyright all rights reserved, 2023 DASCOM Ltd</p>
+        </motion.div>
+      </section>
 
+
+
+      {/* FOOTER LUXE */}
+      <footer className="footer-menu-luxe">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="footer-content-menu"
+          >
+            <div className="footer-grid-luxe">
+              <div className="footer-col">
+                <motion.h3
+                  whileHover={{ color: "#c4a06e" }}
+                >
+                  Drindsud Surprise Event
+                </motion.h3>
+                <p>Créateurs d'émotions magiques depuis 2020</p>
+                <p>📍 155 Rue Charles Atangana, Yaoundé</p>
+              </div>
+
+              <div className="footer-col">
+                <h3>Contact Rapide</h3>
+                <motion.a
+                  href="tel:+237699377664"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  📞 +237 699 377 664
+                </motion.a>
+                <motion.a
+                  href="mailto:wambolecourant@yahoo.fr"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  ✉️ wambolecourant@yahoo.fr
+                </motion.a>
+              </div>
+
+              <div className="footer-col">
+                <h3>Suivez la Magie</h3>
+                <div className="social-links-menu">
+                  {[
+                    { icon: '📘', label: 'Facebook', url: 'https://www.facebook.com/share/1KaSEYsuHb/' },
+                    { icon: '📸', label: 'Instagram', url: '#' },
+                    { icon: '💬', label: 'WhatsApp', url: 'https://wa.me/237699377664' },
+                    { icon: '🎥', label: 'YouTube', url: '#' }
+                  ].map((social, index) => (
+                    <motion.a
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="social-link-menu"
+                      whileHover={{
+                        scale: 1.3,
+                        rotate: 360,
+                        backgroundColor: "#c4a06e",
+                        color: "#0a0a0a"
+                      }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      {social.icon}
+                    </motion.a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <motion.div
+              className="footer-divider"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+            />
+
+            <motion.p
+              className="copyright-menu"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              © 2025 Drindsud Surprise Event — Tous droits réservés
+            </motion.p>
+          </motion.div>
+        </div>
       </footer>
-    </div>
+    </>
   );
 };
 

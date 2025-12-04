@@ -1,206 +1,793 @@
-
-
-
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { packageBox } from '../Box/packageBox';
 import "../styles/Menu.css";
 
-
-
-
 const Menu = () => {
   useEffect(() => {
-    // Faire défiler vers le haut au chargement de la page
     window.scrollTo(0, 0);
   }, []);
 
-  const [selectedService, setSelectedService] = useState(null);
+  const [selectedPackage, setSelectedPackage] = useState(null);
+  const [hoveredPackage, setHoveredPackage] = useState(null);
+  const [activeCategory, setActiveCategory] = useState('all');
 
-  const handleServiceClick = (service) => {
-    setSelectedService(service);
+  const categories = ['all', 'premium', 'classique', 'special', 'luxe'];
+
+  // Filtrer les packages par catégorie
+  const filteredPackages = activeCategory === 'all'
+    ? packageBox
+    : packageBox.filter(pkg => pkg.category === activeCategory);
+
+  const handlePackageClick = (pkg) => {
+    setSelectedPackage(pkg);
+    document.body.style.overflow = 'hidden';
   };
 
   const closeDetails = () => {
-    setSelectedService(null);
+    setSelectedPackage(null);
+    document.body.style.overflow = 'auto';
   };
 
-  const handleReservation = () => {
-    const navigate = useNavigate();
-    navigate("/Reservation");
+  // Variants d'animation
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
   };
 
+  const itemVariants = {
+    hidden: { y: 50, opacity: 0, rotateX: -90 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      rotateX: 0,
+      transition: {
+        duration: 0.8,
+        type: "spring",
+        stiffness: 100
+      }
+    }
+  };
+
+  const cardHoverVariants = {
+    rest: {
+      scale: 1,
+      y: 0,
+      boxShadow: "0 10px 30px rgba(0, 0, 0, 0.2)"
+    },
+    hover: {
+      scale: 1.05,
+      y: -15,
+      boxShadow: "0 30px 60px rgba(196, 160, 110, 0.4)",
+      transition: {
+        duration: 0.3,
+        type: "spring",
+        stiffness: 400
+      }
+    }
+  };
+
+  const modalVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        type: "spring",
+        stiffness: 100
+      }
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.8,
+      transition: { duration: 0.3 }
+    }
+  };
 
   return (
+    <div className='menu-luxe'>
+      {/* HERO SECTION SPECTACULAIRE */}
+      <motion.section
+        className="hero-menu-luxe"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+      >
+        <div className="hero-overlay-menu"></div>
 
-    <div className='menu'>
-      <div className='menu-header'>
-        <h2 className="menu-header-title">Nos Differents Packages</h2>
-        <h3 className="menu-title">Categories Package</h3>
-      </div>
-      <div className="container">
-        <div className={`container ${selectedService ? 'dimmed' : ''}`}>
-          <div className="aside-images">
-            {packageBox.map((service) => (
-              <div
-                key={service.id}
-                onClick={() => handleServiceClick(service)}
-                className="clickable-container"
+        {/* PARTICULES FLOTTANTES */}
+        <div className="floating-particles">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="menu-particle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                background: i % 4 === 0 ? "#c4a06e" :
+                  i % 4 === 1 ? "#8b1e3f" :
+                    i % 4 === 2 ? "#fff" : "#d4b98a"
+              }}
+              animate={{
+                y: [0, -100, 0],
+                x: [0, Math.random() * 50 - 25, 0],
+                rotate: [0, 360],
+                scale: [1, 1.5, 1]
+              }}
+              transition={{
+                duration: Math.random() * 5 + 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: Math.random() * 2
+              }}
+            />
+          ))}
+        </div>
+
+        <motion.div
+          className="hero-content-menu"
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        >
+          <motion.div
+            className="hero-badge-menu"
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+          >
+            🎁
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7, duration: 1 }}
+            className="hero-title-menu"
+          >
+            Nos Packages d'Exception
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 1 }}
+            className="hero-subtitle-menu"
+          >
+            Chaque package est une œuvre d'art<br />
+            dédiée à créer l'émotion parfaite
+          </motion.p>
+
+          <motion.div
+            className="hero-scroll-indicator"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            <span>↓</span>
+          </motion.div>
+        </motion.div>
+      </motion.section>
+
+      {/* FILTRES CATÉGORIES ANIMÉS */}
+      <motion.section
+        className="categories-section"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="container">
+          <div className="categories-wrapper">
+            {categories.map((category, index) => (
+              <motion.button
+                key={category}
+                className={`category-filter ${activeCategory === category ? 'active' : ''}`}
+                onClick={() => setActiveCategory(category)}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.1, y: -5 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <div className="aside-box">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="image-aside"
+                <span className="filter-icon">
+                  {category === 'all' && '✨'}
+                  {category === 'premium' && '👑'}
+                  {category === 'classique' && '🎩'}
+                  {category === 'special' && '💝'}
+                  {category === 'luxe' && '💎'}
+                </span>
+                <span className="filter-text">
+                  {category === 'all' ? 'Tous' :
+                    category === 'premium' ? 'Premium' :
+                      category === 'classique' ? 'Classique' :
+                        category === 'special' ? 'Spéciaux' : 'Luxe'}
+                </span>
+
+                {activeCategory === category && (
+                  <motion.div
+                    className="active-indicator"
+                    layoutId="activeCategory"
+                    transition={{ type: "spring", stiffness: 500 }}
                   />
-                  <div className="aside-description">
-                    <h4 className="mt-4">{service.title}</h4>
-                  </div>
-                </div>
-              </div>
+                )}
+              </motion.button>
             ))}
           </div>
-
-          {selectedService && (
-            <div className="details-overlay">
-              <div className="overlay-backdrop" onClick={closeDetails}></div>
-              <div className="details-content">
-                <h2>{selectedService.title}</h2>
-                <img
-                  src={selectedService.image}
-                  alt={selectedService.title}
-                  className="detail-image"
-                />
-                <p>
-                  {selectedService.description.intro}
-                  <br /><br />
-                  {selectedService.description.list.map((item, index) => (
-                    <span key={index}>
-                      {item}<br />
-                    </span>
-                  ))}
-                  <br />
-                  {selectedService.description.outro}
-                </p>
-                <button
-                  className="cta-button"
-                  onClick={closeDetails}
-                >
-                  Fermer
-                </button>
-                <a
-                    href={`https://wa.me/237699377664?text=${encodeURIComponent(
-                      "Bonjour et bienvenue chez Drinsud — l’adresse incontournable pour des événements de prestige. Nous transformons vos moments spéciaux en souvenirs inoubliables, grâce à une organisation raffinée et un service de première classe.Chaque détail compte , que ce soit pour un anniversaire, une demande en mariage, une baby shower ou toute autre célébration, Drindsud Surprise Event transforme vos idées en réalité avec créativité, élégance et émotion..."
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="cta-button ms-3 link"
-                  >
-                    WhatsApp
-                  </a>
-              </div>
-            </div>
-          )}
         </div>
-      </div>
+      </motion.section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <footer className="wrapper">
+      {/* GRILLE DE PACKAGES 3D */}
+      <motion.section
+        className="packages-grid-section"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
         <div className="container">
-          <div className="footer-showcase">
-            <div className="foot-a">
-              <h3 className='display-5'>FOLLOW US</h3>
-              <p>Follow us on social media</p>
-              <i>
-                <a href='https://www.facebook.com/share/1KaSEYsuHb/' target="_blank" rel="noopener noreferrer">
-                <svg class="social-icon" fill="orange" width="20px" height="20px" viewBox="-7 -2 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" className="jam jam-facebook"><path d='M2.046 3.865v2.748H.032v3.36h2.014v9.986H6.18V9.974h2.775s.26-1.611.386-3.373H6.197V4.303c0-.343.45-.805.896-.805h2.254V0H6.283c-4.34 0-4.237 3.363-4.237 3.865z' /></svg>
-                </a>
-              </i>
+          <div className="packages-grid-luxe">
+            {filteredPackages.map((pkg, index) => (
+              <motion.div
+                key={pkg.id}
+                className="package-card-luxe"
+                variants={itemVariants}
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                whileHover="hover"
+                onHoverStart={() => setHoveredPackage(pkg.id)}
+                onHoverEnd={() => setHoveredPackage(null)}
+                onClick={() => handlePackageClick(pkg)}
+              >
+                <motion.div
+                  className="package-card-inner"
+                  variants={cardHoverVariants}
+                  style={{ perspective: "1000px" }}
+                >
+                  {/* BADGE BEST-SELLER */}
+                  {pkg.bestSeller && (
+                    <motion.div
+                      className="best-seller-badge"
+                      initial={{ rotate: -45, x: -50 }}
+                      animate={{ rotate: -45, x: -35 }}
+                      whileHover={{ rotate: -35, scale: 1.1 }}
+                    >
+                      <span>⭐ BEST-SELLER</span>
+                    </motion.div>
+                  )}
 
-              <i className='ms-3'>
-                <a   href={`https://wa.me/237699377664?text=${encodeURIComponent(
-                      "Bonjour et bienvenue chez Drindsud — l’adresse incontournable pour des événements de prestige. Nous transformons vos moments spéciaux en souvenirs inoubliables, grâce à une organisation raffinée et un service de première classe.Chaque détail compte , que ce soit pour un anniversaire, une demande en mariage, une baby shower ou toute autre célébration, Drindsud Surprise Event transforme vos idées en réalité avec créativité, élégance et émotion..."
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer">
-                <svg class="social-icon" fill="orange" width="20px" height="20px" viewBox="-2 -2 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" className="jam jam-whatsapp"><path d='M9.516.012C4.206.262.017 4.652.033 9.929a9.798 9.798 0 0 0 1.085 4.465L.06 19.495a.387.387 0 0 0 .47.453l5.034-1.184a9.981 9.981 0 0 0 4.284 1.032c5.427.083 9.951-4.195 10.12-9.58C20.15 4.441 15.351-.265 9.516.011zm6.007 15.367a7.784 7.784 0 0 1-5.52 2.27 7.77 7.77 0 0 1-3.474-.808l-.701-.347-3.087.726.65-3.131-.346-.672A7.62 7.62 0 0 1 2.197 9.9c0-2.07.812-4.017 2.286-5.48a7.85 7.85 0 0 1 5.52-2.271c2.086 0 4.046.806 5.52 2.27a7.672 7.672 0 0 1 2.287 5.48c0 2.052-.825 4.03-2.287 5.481z' /><path d='M14.842 12.045l-1.931-.55a.723.723 0 0 0-.713.186l-.472.478a.707.707 0 0 1-.765.16c-.913-.367-2.835-2.063-3.326-2.912a.694.694 0 0 1 .056-.774l.412-.53a.71.71 0 0 0 .089-.726L7.38 5.553a.723.723 0 0 0-1.125-.256c-.539.453-1.179 1.14-1.256 1.903-.137 1.343.443 3.036 2.637 5.07 2.535 2.349 4.566 2.66 5.887 2.341.75-.18 1.35-.903 1.727-1.494a.713.713 0 0 0-.408-1.072z' /></svg>
-                </a>
-              </i>
+                  {/* IMAGE DU PACKAGE */}
+                  <div className="package-image-container">
+                    <motion.img
+                      src={pkg.image}
+                      alt={pkg.title}
+                      className="package-image-luxe"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.6 }}
+                    />
+                    <div className="package-image-overlay">
+                      <motion.div
+                        className="view-details-btn"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{
+                          opacity: hoveredPackage === pkg.id ? 1 : 0,
+                          y: hoveredPackage === pkg.id ? 0 : 20
+                        }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        Voir les détails →
+                      </motion.div>
+                    </div>
+                  </div>
 
-              <i className='ms-3'>
-                <svg class="social-icon" width="20px" height="20px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="orange"><path fill="orange" fill-rule="evenodd" d="M13.478 3.399c.6.161 1.072.634 1.234 1.234C15 5.728 15 8 15 8s0 2.272-.288 3.367a1.754 1.754 0 01-1.234 1.234C12.382 12.89 8 12.89 8 12.89s-4.382 0-5.478-.289a1.754 1.754 0 01-1.234-1.234C1 10.283 1 8 1 8s0-2.272.288-3.367c.162-.6.635-1.073 1.234-1.234C3.618 3.11 8 3.11 8 3.11s4.382 0 5.478.289zm-3.24 4.612l-3.645 2.1V5.9l3.644 2.11z" clip-rule="evenodd" /></svg>
+                  {/* CONTENU DU PACKAGE */}
+                  <div className="package-content-luxe">
+                    <div className="package-header">
+                      <motion.h3
+                        initial={{ opacity: 0.8 }}
+                        animate={{ opacity: hoveredPackage === pkg.id ? 1 : 0.8 }}
+                      >
+                        {pkg.title}
+                      </motion.h3>
 
-              </i>
+                      {pkg.category && (
+                        <motion.span
+                          className="package-category"
+                          whileHover={{ scale: 1.1 }}
+                        >
+                          {pkg.category}
+                        </motion.span>
+                      )}
+                    </div>
 
-              <i className='ms-3'>
-                <svg fill="orange" width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path d="M22,5.8a8.49,8.49,0,0,1-2.36.64,4.13,4.13,0,0,0,1.81-2.27,8.21,8.21,0,0,1-2.61,1,4.1,4.1,0,0,0-7,3.74A11.64,11.64,0,0,1,3.39,4.62a4.16,4.16,0,0,0-.55,2.07A4.09,4.09,0,0,0,4.66,10.1,4.05,4.05,0,0,1,2.8,9.59v.05a4.1,4.1,0,0,0,3.3,4A3.93,3.93,0,0,1,5,13.81a4.9,4.9,0,0,1-.77-.07,4.11,4.11,0,0,0,3.83,2.84A8.22,8.22,0,0,1,3,18.34a7.93,7.93,0,0,1-1-.06,11.57,11.57,0,0,0,6.29,1.85A11.59,11.59,0,0,0,20,8.45c0-.17,0-.35,0-.53A8.43,8.43,0,0,0,22,5.8Z" /></svg>
-              </i>
+                    {/* ÉTOILES DE POPULARITÉ */}
+                    {pkg.popularity && (
+                      <motion.div
+                        className="popularity-stars"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.3 }}
+                      >
+                        {[...Array(pkg.popularity)].map((_, i) => (
+                          <motion.span
+                            key={i}
+                            className="star"
+                            animate={{
+                              rotate: [0, 20, 0],
+                              scale: [1, 1.2, 1]
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: i * 0.2,
+                              ease: "easeInOut"
+                            }}
+                          >
+                            ★
+                          </motion.span>
+                        ))}
+                      </motion.div>
+                    )}
 
-            </div>
-            <div className="foot-b">
-              <h3 className='display-5'>GET IN TOUCH</h3>
-              <div class="d-flex">
-                <p>
-                  <svg fill="orange" width="20px" height="20px" viewBox="-3 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                    <g id="Group_31" data-name="Group 31" transform="translate(-241.002 -321.05)">
-                      <path id="Path_296" data-name="Path 296" d="M267,349.05v-24a4,4,0,0,0-4-4H245a4,4,0,0,0-4,4v24a4,4,0,0,0,4,4h18A4,4,0,0,0,267,349.05Zm-22,0v-24h18v24Z" />
-                      <rect id="Rectangle_6" data-name="Rectangle 6" width="10" height="12" transform="translate(249.002 329.05)" />
-                      <rect id="Rectangle_7" data-name="Rectangle 7" width="18" height="4" transform="translate(245.002 345.05)" />
-                    </g>
-                  </svg>
-                </p>
-                <p class="ms-2">Tel:699377664</p>
-              </div>
-              <div class="d-flex">
-                <p>
-                  <svg fill="orange" width="20px" height="20px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" ><title>mail</title><path d="M64 128Q64 113 73 105 81 96 96 96L416 96Q431 96 440 105 448 113 448 128L448 144 256 272 64 144 64 128ZM256 328L448 200 448 384Q448 416 416 416L96 416Q64 416 64 384L64 200 256 328Z" /></svg>
-                </p>
-                <p class="ms-2">Email: wambolecourant@yahoo.fr</p>
-              </div>
-              <div class="d-flex">
-                <p>
-                  <svg fill="orange" width="20px" height="20px" viewBox="0 0 24 24" version="UT1.2" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg"><path d="M17.657 5.304c-3.124-3.073-8.189-3.073-11.313 0-3.124 3.074-3.124 8.057 0 11.13l5.656 5.565 5.657-5.565c3.124-3.073 3.124-8.056 0-11.13zm-5.657 8.195c-.668 0-1.295-.26-1.768-.732-.975-.975-.975-2.561 0-3.536.472-.472 1.1-.732 1.768-.732s1.296.26 1.768.732c.975.975.975 2.562 0 3.536-.472.472-1.1.732-1.768.732z" /></svg>
-                </p>
-                <p class="ms-2">155 Charles Antagana Street , Yaounde-Cameroun</p>
-              </div>
-            </div>
-            <div className="foot-a">
-              <h3 className='display-5'>PACKAGES</h3>
-              <p>Package Bonheur</p>
-              <p>Package Classique</p>
-              <p>Package Prestige</p>
-              <p>Package Premium</p>
-              <p>Package Inoubliable</p>
+                    {/* PRIX ANIMÉ */}
+                    <motion.div
+                      className="package-price"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                    >
+                      <span className="price-from">À partir de</span>
+                      <motion.div
+                        className="price-amount"
+                        whileHover={{ scale: 1.1 }}
+                      >
+                        {pkg.price}
+                      </motion.div>
+                    </motion.div>
 
-            </div>
+                    {/* DESCRIPTION */}
+                    <motion.p
+                      className="package-description"
+                      initial={{ opacity: 0.7 }}
+                      animate={{ opacity: hoveredPackage === pkg.id ? 1 : 0.7 }}
+                    >
+                      {pkg.shortDescription}
+                    </motion.p>
 
+                    {/* TAGS */}
+                    {pkg.tags && (
+                      <motion.div
+                        className="package-tags"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.7 }}
+                      >
+                        {pkg.tags.map((tag, tagIndex) => (
+                          <motion.span
+                            key={tagIndex}
+                            className="tag"
+                            whileHover={{ scale: 1.1, y: -2 }}
+                          >
+                            #{tag}
+                          </motion.span>
+                        ))}
+                      </motion.div>
+                    )}
+                  </div>
+
+                  {/* EFFET DE LUEUR */}
+                  <motion.div
+                    className="package-glow"
+                    animate={{
+                      opacity: [0.3, 0.6, 0.3],
+                      scale: [1, 1.2, 1]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                </motion.div>
+              </motion.div>
+            ))}
           </div>
         </div>
-        <p class="text-center text-warning mt-5">&copy;Copyright all rights reserved, 2023 DASCOM Ltd</p>
+      </motion.section>
 
+      {/* SECTION COMPARATIF */}
+      <motion.section
+        className="comparison-section"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+      >
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="comparison-header"
+          >
+            <h2>Quel Package Choisir ?</h2>
+            <p className="comparison-subtitle">
+              Trouvez le package parfait pour votre moment magique
+            </p>
+          </motion.div>
+
+          <div className="comparison-cards">
+            {packageBox.slice(0, 3).map((pkg, index) => (
+              <motion.div
+                key={pkg.id}
+                className="comparison-card"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2, duration: 0.6 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10 }}
+              >
+                <h3>{pkg.title}</h3>
+                <div className="comparison-price">{pkg.price}</div>
+                <ul className="comparison-features">
+                  {pkg.features?.slice(0, 4).map((feature, i) => (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 * i }}
+                      viewport={{ once: true }}
+                    >
+                      ✓ {feature}
+                    </motion.li>
+                  ))}
+                </ul>
+                <motion.button
+                  className="comparison-select-btn"
+                  whileHover={{ scale: 1.05, backgroundColor: "#c4a06e", color: "#0a0a0a" }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => handlePackageClick(pkg)}
+                >
+                  Choisir ce package
+                </motion.button>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* CTA PERSONALISATION */}
+      <motion.section
+        className="customization-cta"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+      >
+        <div className="container">
+          <motion.div
+            className="customization-content"
+            initial={{ scale: 0.9, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              className="customization-icon"
+              animate={{
+                rotate: [0, 360],
+                scale: [1, 1.2, 1]
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              ⚡
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              Votre Package Sur Mesure
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              Ces packages ne sont que des bases.<br />
+              Contactez-nous pour créer ensemble votre expérience unique.
+            </motion.p>
+
+            <motion.div
+              className="customization-buttons"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              viewport={{ once: true }}
+            >
+              <motion.a
+                href={`https://wa.me/237699377664?text=${encodeURIComponent(
+                  "Bonjour, je souhaite créer un package sur mesure avec Drindsud Surprise Event."
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-whatsapp-custom"
+                whileHover={{ scale: 1.05, backgroundColor: "#128C7E" }}
+                whileTap={{ scale: 0.95 }}
+              >
+                💬 Discuter avec un expert
+              </motion.a>
+
+              <motion.a
+                href="tel:+237699377664"
+                className="btn-call-custom"
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "transparent",
+                  borderColor: "#c4a06e",
+                  color: "#c4a06e"
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                📞 Appeler maintenant
+              </motion.a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* MODAL DE DÉTAILS */}
+      {selectedPackage && (
+        <motion.div
+          className="package-modal-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={closeDetails}
+        >
+          <motion.div
+            className="package-modal-content"
+            variants={modalVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <motion.button
+              className="modal-close-btn"
+              onClick={closeDetails}
+              whileHover={{ rotate: 90, backgroundColor: "#8b1e3f" }}
+              whileTap={{ scale: 0.9 }}
+            >
+              ×
+            </motion.button>
+
+            <div className="modal-header-luxe">
+              <motion.h2
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+              >
+                {selectedPackage.title}
+              </motion.h2>
+              <motion.div
+                className="modal-price"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.3, type: "spring" }}
+              >
+                {selectedPackage.price}
+              </motion.div>
+            </div>
+
+            <motion.img
+              src={selectedPackage.image}
+              alt={selectedPackage.title}
+              className="modal-image-luxe"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+            />
+
+            <motion.div
+              className="modal-body-luxe"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <div className="modal-description">
+                <h3>Description complète</h3>
+                <p>
+                  {selectedPackage.description?.intro || selectedPackage.shortDescription}
+                  <br /><br />
+                  {selectedPackage.description?.list && (
+                    <ul className="feature-list">
+                      {selectedPackage.description.list.map((item, index) => (
+                        <motion.li
+                          key={index}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.6 + (index * 0.1) }}
+                        >
+                          ✓ {item}
+                        </motion.li>
+                      ))}
+                    </ul>
+                  )}
+                  <br />
+                  {selectedPackage.description?.outro && (
+                    <p className="modal-outro">{selectedPackage.description.outro}</p>
+                  )}
+                </p>
+              </div>
+
+              {selectedPackage.fullFeatures && (
+                <motion.div
+                  className="modal-features"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.8 }}
+                >
+                  <h3>Inclus dans ce package</h3>
+                  <div className="features-grid">
+                    {selectedPackage.fullFeatures.map((feature, index) => (
+                      <motion.div
+                        key={index}
+                        className="feature-item"
+                        whileHover={{ scale: 1.05 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.9 + (index * 0.05) }}
+                      >
+                        <span className="feature-icon">✨</span>
+                        <span>{feature}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </motion.div>
+
+            <motion.div
+              className="modal-footer-luxe"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 1 }}
+            >
+              <motion.button
+                className="btn-modal-close"
+                onClick={closeDetails}
+                whileHover={{ backgroundColor: "#8b1e3f" }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Continuer à explorer
+              </motion.button>
+
+              <motion.a
+                href={`https://wa.me/237699377664?text=${encodeURIComponent(
+                  `Bonjour, je souhaite réserver le package : ${selectedPackage.title}`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-modal-reserve"
+                whileHover={{
+                  backgroundColor: "#25d366",
+                  scale: 1.05
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Réserver maintenant
+              </motion.a>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      )}
+
+      {/* FOOTER LUXE */}
+      <footer className="footer-menu-luxe">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="footer-content-menu"
+          >
+            <div className="footer-grid-luxe">
+              <div className="footer-col">
+                <motion.h3
+                  whileHover={{ color: "#c4a06e" }}
+                >
+                  Drindsud Surprise Event
+                </motion.h3>
+                <p>Créateurs d'émotions magiques depuis 2020</p>
+                <p>📍 155 Rue Charles Atangana, Yaoundé</p>
+              </div>
+
+              <div className="footer-col">
+                <h3>Contact Rapide</h3>
+                <motion.a
+                  href="tel:+237699377664"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  📞 +237 699 377 664
+                </motion.a>
+                <motion.a
+                  href="mailto:wambolecourant@yahoo.fr"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  ✉️ wambolecourant@yahoo.fr
+                </motion.a>
+              </div>
+
+              <div className="footer-col">
+                <h3>Suivez la Magie</h3>
+                <div className="social-links-menu">
+                  {[
+                    { icon: '📘', label: 'Facebook', url: 'https://www.facebook.com/share/1KaSEYsuHb/' },
+                    { icon: '📸', label: 'Instagram', url: '#' },
+                    { icon: '💬', label: 'WhatsApp', url: 'https://wa.me/237699377664' },
+                    { icon: '🎥', label: 'YouTube', url: '#' }
+                  ].map((social, index) => (
+                    <motion.a
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="social-link-menu"
+                      whileHover={{
+                        scale: 1.3,
+                        rotate: 360,
+                        backgroundColor: "#c4a06e",
+                        color: "#0a0a0a"
+                      }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      {social.icon}
+                    </motion.a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <motion.div
+              className="footer-divider"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+            />
+
+            <motion.p
+              className="copyright-menu"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              © 2025 Drindsud Surprise Event — Tous droits réservés
+            </motion.p>
+          </motion.div>
+        </div>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Menu
-
+export default Menu;

@@ -19,7 +19,6 @@ function App() {
       <Router>
          <Navbar/>
          <EventBot/>
-
           <Routes>
             <Route path ="/" element = {<Home />}/>
             <Route path ="/About" element = {<About/>}/> 
@@ -32,7 +31,6 @@ function App() {
             <Route path ="/Administrateur" element = {<Administrateur />}/>
             <Route path ="/Client" element = {<Client />}/>
           </Routes>
-
    </Router>
   );
 }

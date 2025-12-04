@@ -1,157 +1,1071 @@
-import React from 'react';
-import { Link } from "react-router-dom"
-import { useEffect } from 'react';
-import "../styles/About.css"
+
+
+import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Link } from "react-router-dom";
+import "../styles/About.css";
 
 const About = () => {
-
   useEffect(() => {
-    // Faire défiler vers le haut au chargement de la page
     window.scrollTo(0, 0);
   }, []);
 
+  // Données pour les valeurs
+  const values = [
+    {
+      icon: "🎨",
+      title: "Créativité Illimitée",
+      description: "Chaque événement est une toile vierge que nous peignons avec une touche artistique unique et originale.",
+      color: "#c4a06e"
+    },
+    {
+      icon: "❤️",
+      title: "Émotion Pure",
+      description: "Nous ne créons pas seulement des décors, mais des moments forts remplis de joie, de surprise et d'émotion pure.",
+      color: "#8b1e3f"
+    },
+    {
+      icon: "👂",
+      title: "Écoute Active",
+      description: "Vous êtes au centre de notre attention. Vos rêves et envies guident chaque étape de notre travail.",
+      color: "#c4a06e"
+    },
+    {
+      icon: "🤝",
+      title: "Fiabilité Totale",
+      description: "Professionnalisme, ponctualité et engagement absolu sont nos maîtres-mots pour chaque projet.",
+      color: "#8b1e3f"
+    },
+    {
+      icon: "🌟",
+      title: "Excellence",
+      description: "Nous visons la perfection dans les moindres détails pour une expérience sans compromis.",
+      color: "#c4a06e"
+    },
+    {
+      icon: "💡",
+      title: "Innovation",
+      description: "Nous repoussons les limites de l'imaginaire pour créer des expériences uniques et inoubliables.",
+      color: "#8b1e3f"
+    }
+  ];
+
+  // Histoire de l'entreprise
+  const timeline = [
+    {
+      year: "2020",
+      title: "Naissance d'un Rêve",
+      description: "Création de Drindsud avec une vision simple : transformer les moments ordinaires en souvenirs extraordinaires.",
+      icon: "🚀"
+    },
+    {
+      year: "2021",
+      title: "Premières Émotions",
+      description: "Première demande en mariage organisée. Les larmes de joie confirment notre vocation.",
+      icon: "💍"
+    },
+    {
+      year: "2022",
+      title: "Expansion",
+      description: "Ouverture de notre atelier créatif et élargissement de notre équipe d'artistes passionnés.",
+      icon: "📈"
+    },
+    {
+      year: "2023",
+      title: "Reconnaissance",
+      description: "Prix 'Excellence Événementielle' et partenariat avec des fournisseurs premium.",
+      icon: "🏆"
+    },
+    {
+      year: "2024",
+      title: "Innovation",
+      description: "Lancement de nos expériences immersives et réalité augmentée pour les événements.",
+      icon: "✨"
+    },
+    {
+      year: "2025",
+      title: "Légende",
+      description: "Plus de 500 événements magiques créés, des souvenirs éternels gravés dans les cœurs.",
+      icon: "👑"
+    }
+  ];
+  // Équipe créative avec avatars africains fictifs
+  const team = [
+    {
+      name: "Sarah M.",
+      role: "Directrice Artistique",
+      specialty: "Scénographie & Ambiance",
+      quote: "Chaque détail raconte une histoire.",
+      image: "https://cdn3d.iconscout.com/3d/premium/thumb/african-woman-avatar-3d-icon-123456.png"
+    },
+    {
+      name: "David K.",
+      role: "Master Planificateur",
+      specialty: "Logistique & Timing Parfait",
+      quote: "La magie réside dans l'impeccable.",
+      image: "https://cdn3d.iconscout.com/3d/premium/thumb/african-man-avatar-3d-icon-654321.png"
+    },
+    {
+      name: "Léa T.",
+      role: "Alchimiste Émotionnelle",
+      specialty: "Moments de Suspense & Surprise",
+      quote: "Je crée les battements de cœur suspendus.",
+      image: "https://cdn3d.iconscout.com/3d/premium/thumb/african-girl-avatar-3d-icon-789012.png"
+    },
+    {
+      name: "Marc D.",
+      role: "Architecte Sensoriel",
+      specialty: "Lumières & Son Immersif",
+      quote: "La technologie au service de l'émotion.",
+      image: "https://cdn3d.iconscout.com/3d/premium/thumb/african-boy-avatar-3d-icon-345678.png"
+    }
+  ];
+  ;
+
+  // Variants d'animation
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const cardHoverVariants = {
+    rest: { scale: 1, y: 0 },
+    hover: {
+      scale: 1.05,
+      y: -15,
+      boxShadow: "0 25px 50px rgba(196, 160, 110, 0.3)",
+      transition: { duration: 0.4 }
+    }
+  };
+
+  const infiniteFloat = {
+    animate: {
+      y: [0, -20, 0],
+      transition: {
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
+  };
+
   return (
-    <div className="about-main">
-      <div className="about-wrapper">
-        <div className='container'>
-          <div className="about-container">
-            <div className="about-text">
-              <h2 className="about-title mb-3 display-4">🎉 À propos de Drinsud Surprise Event</h2>
-              <p className='lead'>Chez Drinsud Surprise Event, nous croyons que chaque instant mérite d’être célébré de manière unique, originale et mémorable.
-                Basée sur la passion de créer l’émotion et la magie, notre entreprise événementielle est née du désir de sublimer vos plus beaux moments, qu’ils soient grands ou petits.</p>
-              <p className='lead'>Depuis notre création, nous accompagnons particuliers et entreprises dans l'organisation de surprises et d’événements sur mesure, pensés dans les moindres détails pour refléter votre personnalité et vos envies. Qu'il s'agisse d'une demande en mariage féerique, d’un anniversaire inoubliable, d’un événement d’entreprise chic ou d’une baby shower remplie de douceur, Drindsud transforme chaque occasion en une véritable expérience.</p>
-
-              <Link to="/Menu" className="btn btn-warning btn-lg mt-3">En savoir plus</Link>
-            </div>
-          </div>
+    <div className="about-luxe">
+      {/* HERO SECTION - Background Image Spectaculaire */}
+      <motion.section
+        className="hero-about-luxe"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+      >
+        <div className="hero-overlay-about"></div>
+        <div className="floating-elements">
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="floating-element"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                fontSize: `${Math.random() * 2 + 1}rem`
+              }}
+              animate={{
+                y: [0, -100, 0],
+                rotate: [0, 360],
+                opacity: [0.3, 0.8, 0.3]
+              }}
+              transition={{
+                duration: Math.random() * 5 + 3,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            >
+              {['✨', '🎉', '💫', '🎊', '🌟', '🎈', '🎁', '💖'][i % 8]}
+            </motion.div>
+          ))}
         </div>
-      </div>
-     
-      <div className="testimony-section">
-        <div className='testi-header'>
-          <h2 className="title-testi">Nos <span className='text-warning'>Valeurs</span></h2>
-          <p className='text-center  px-4'>Chez Drinsud, nos valeurs sont au cœur de chacune <br /> de nos prestations </p>
-        </div>
-        <div className="testimony-wrapper">
-          <div className="testimony-container">
-            <div className="testi">
-              <h3>🎨 Créativité </h3>
-              <p>Chaque événement est pensé sur mesure, avec une touche artistique unique.</p>
-            </div>
-            <div className="testi">
-              <h3>❤️ Émotion </h3>
-              <p>Nous ne créons pas seulement des décors, nous créons des moments forts, remplis de joie et de surprise.</p>
-            </div>
-            <div className="testi">
-              <h3>👂 Écoute </h3>
-              <p> Vous êtes au centre de notre attention. Vos besoins, vos envies et vos rêves guident notre travail..</p>
-            </div>
-            <div className="testi">
-              <h3>🤝 Fiabilité</h3>
-              <p>Professionnalisme, ponctualité et engagement sont nos maîtres-mots..</p>
-            </div>
-            <div className="testi">
-              <h3>🌟 Excellence</h3>
-              <p> Nous visons toujours la perfection, dans les moindres détails.</p>
-            </div>
-            <div className="testi">
-              <h3>💡 Innovation</h3>
-              <p>Nous repoussons sans cesse les limites de l’imaginaire pour offrir des expériences originales et inoubliables.</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
+        <motion.div
+          className="hero-content-about"
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        >
+          <motion.div
+            className="hero-badge"
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+          >
+            ✨
+          </motion.div>
 
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7, duration: 1 }}
+            className="hero-title-about"
+          >
+            L'Art de Créer<br />l'Émotion Pure
+          </motion.h1>
 
-      <footer className="wrapper">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 1 }}
+            className="hero-subtitle-about"
+          >
+            Depuis 2020, nous transformons vos rêves<br />en souvenirs éternels
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.3 }}
+            className="cta-buttons-about"
+          >
+            <motion.a
+              href="#histoire"
+              className="btn-gold-about"
+              whileHover={{
+                backgroundColor: "#c4a06e",
+                color: "#0a0a0a",
+                scale: 1.05
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Découvrir Notre Histoire
+            </motion.a>
+
+            <motion.a
+              href="#equipe"
+              className="btn-outline-gold"
+              whileHover={{
+                backgroundColor: "rgba(196, 160, 110, 0.1)",
+                scale: 1.05
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Rencontrer l'Équipe
+            </motion.a>
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          className="scroll-indicator"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          <span>↓</span>
+        </motion.div>
+      </motion.section>
+
+      {/* STATISTIQUES MÉTAPHORIQUES & INTERACTIVES */}
+      <motion.section
+        className="stats-metaphor-section"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 1.2 }}
+      >
         <div className="container">
-          <div className="footer-showcase">
-            <div className="foot-a">
-              <h3 className='display-5'>FOLLOW US</h3>
-              <p>Follow us on social media</p>
-              <i>
-                <a href='https://www.facebook.com/share/1KaSEYsuHb/' target="_blank" rel="noopener noreferrer">
-                <svg class="social-icon" fill="orange" width="20px" height="20px" viewBox="-7 -2 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" className="jam jam-facebook"><path d='M2.046 3.865v2.748H.032v3.36h2.014v9.986H6.18V9.974h2.775s.26-1.611.386-3.373H6.197V4.303c0-.343.45-.805.896-.805h2.254V0H6.283c-4.34 0-4.237 3.363-4.237 3.865z' /></svg>
-                </a>
-              </i>
+          {/* TITRE ANIMÉ */}
+          <motion.div
+            className="section-header-metaphor"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div
+              className="title-sparkle"
+              animate={{
+                rotate: [0, 360],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              ✨
+            </motion.div>
+            <h2>L'Émotion en Chiffres</h2>
+            <p className="subtitle-metaphor">
+              Des statistiques qui racontent plus que des nombres<br />
+              elles racontent des sourires, des larmes de joie, des moments magiques
+            </p>
+          </motion.div>
 
-              <i className='ms-3'>
-                <a   href={`https://wa.me/237699377664?text=${encodeURIComponent(
-                      "Bonjour et bienvenue chez Drindsud — l’adresse incontournable pour des événements de prestige. Nous transformons vos moments spéciaux en souvenirs inoubliables, grâce à une organisation raffinée et un service de première classe.Chaque détail compte , que ce soit pour un anniversaire, une demande en mariage, une baby shower ou toute autre célébration, Drindsud Surprise Event transforme vos idées en réalité avec créativité, élégance et émotion..."
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer">
-                <svg class="social-icon" fill="orange" width="20px" height="20px" viewBox="-2 -2 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" className="jam jam-whatsapp"><path d='M9.516.012C4.206.262.017 4.652.033 9.929a9.798 9.798 0 0 0 1.085 4.465L.06 19.495a.387.387 0 0 0 .47.453l5.034-1.184a9.981 9.981 0 0 0 4.284 1.032c5.427.083 9.951-4.195 10.12-9.58C20.15 4.441 15.351-.265 9.516.011zm6.007 15.367a7.784 7.784 0 0 1-5.52 2.27 7.77 7.77 0 0 1-3.474-.808l-.701-.347-3.087.726.65-3.131-.346-.672A7.62 7.62 0 0 1 2.197 9.9c0-2.07.812-4.017 2.286-5.48a7.85 7.85 0 0 1 5.52-2.271c2.086 0 4.046.806 5.52 2.27a7.672 7.672 0 0 1 2.287 5.48c0 2.052-.825 4.03-2.287 5.481z' /><path d='M14.842 12.045l-1.931-.55a.723.723 0 0 0-.713.186l-.472.478a.707.707 0 0 1-.765.16c-.913-.367-2.835-2.063-3.326-2.912a.694.694 0 0 1 .056-.774l.412-.53a.71.71 0 0 0 .089-.726L7.38 5.553a.723.723 0 0 0-1.125-.256c-.539.453-1.179 1.14-1.256 1.903-.137 1.343.443 3.036 2.637 5.07 2.535 2.349 4.566 2.66 5.887 2.341.75-.18 1.35-.903 1.727-1.494a.713.713 0 0 0-.408-1.072z' /></svg>
-                </a>
-              </i>
+          {/* STATISTIQUES PRINCIPALES EN 3D */}
+          <div className="stats-3d-grid">
+            {/* CARD 1 - ÉVÉNEMENTS */}
+            <motion.div
+              className="stat-card-3d"
+              initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+              whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+              transition={{
+                duration: 0.8,
+                delay: 0.2,
+                type: "spring",
+                stiffness: 100
+              }}
+              viewport={{ once: true }}
+              whileHover={{
+                scale: 1.1,
+                rotateY: 10,
+                boxShadow: "0 30px 60px rgba(196, 160, 110, 0.4)"
+              }}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <div className="stat-card-inner">
+                <div className="stat-front">
+                  <motion.div
+                    className="stat-icon-3d"
+                    animate={{
+                      y: [0, -15, 0],
+                      rotate: [0, 5, -5, 0]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    🎭
+                  </motion.div>
+                  <motion.div
+                    className="stat-number-3d"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+                  >
+                    500+
+                  </motion.div>
+                  <h3>Moments Magiques</h3>
+                  <p>Chaque chiffre cache une émotion unique</p>
 
-              <i className='ms-3'>
-                <svg class="social-icon" width="20px" height="20px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="orange"><path fill="orange" fill-rule="evenodd" d="M13.478 3.399c.6.161 1.072.634 1.234 1.234C15 5.728 15 8 15 8s0 2.272-.288 3.367a1.754 1.754 0 01-1.234 1.234C12.382 12.89 8 12.89 8 12.89s-4.382 0-5.478-.289a1.754 1.754 0 01-1.234-1.234C1 10.283 1 8 1 8s0-2.272.288-3.367c.162-.6.635-1.073 1.234-1.234C3.618 3.11 8 3.11 8 3.11s4.382 0 5.478.289zm-3.24 4.612l-3.645 2.1V5.9l3.644 2.11z" clip-rule="evenodd" /></svg>
-
-              </i>
-
-              <i className='ms-3'>
-                <svg fill="orange" width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path d="M22,5.8a8.49,8.49,0,0,1-2.36.64,4.13,4.13,0,0,0,1.81-2.27,8.21,8.21,0,0,1-2.61,1,4.1,4.1,0,0,0-7,3.74A11.64,11.64,0,0,1,3.39,4.62a4.16,4.16,0,0,0-.55,2.07A4.09,4.09,0,0,0,4.66,10.1,4.05,4.05,0,0,1,2.8,9.59v.05a4.1,4.1,0,0,0,3.3,4A3.93,3.93,0,0,1,5,13.81a4.9,4.9,0,0,1-.77-.07,4.11,4.11,0,0,0,3.83,2.84A8.22,8.22,0,0,1,3,18.34a7.93,7.93,0,0,1-1-.06,11.57,11.57,0,0,0,6.29,1.85A11.59,11.59,0,0,0,20,8.45c0-.17,0-.35,0-.53A8.43,8.43,0,0,0,22,5.8Z" /></svg>
-              </i>
-
-            </div>
-            <div className="foot-b">
-              <h3 className='display-5'>GET IN TOUCH</h3>
-              <div class="d-flex">
-                <p>
-                  <svg fill="orange" width="20px" height="20px" viewBox="-3 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                    <g id="Group_31" data-name="Group 31" transform="translate(-241.002 -321.05)">
-                      <path id="Path_296" data-name="Path 296" d="M267,349.05v-24a4,4,0,0,0-4-4H245a4,4,0,0,0-4,4v24a4,4,0,0,0,4,4h18A4,4,0,0,0,267,349.05Zm-22,0v-24h18v24Z" />
-                      <rect id="Rectangle_6" data-name="Rectangle 6" width="10" height="12" transform="translate(249.002 329.05)" />
-                      <rect id="Rectangle_7" data-name="Rectangle 7" width="18" height="4" transform="translate(245.002 345.05)" />
-                    </g>
-                  </svg>
-                </p>
-                <p class="ms-2">Tel:699377664</p>
+                  <motion.div
+                    className="stat-progress-bar"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "85%" }}
+                    transition={{ delay: 0.8, duration: 1.5, ease: "easeOut" }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="progress-fill"></div>
+                  </motion.div>
+                </div>
+                <div className="stat-back">
+                  <div className="stat-quote">
+                    "500 sourires éclatants, 500 cœurs touchés"
+                  </div>
+                </div>
               </div>
-              <div class="d-flex">
-                <p>
-                  <svg fill="orange" width="20px" height="20px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" ><title>mail</title><path d="M64 128Q64 113 73 105 81 96 96 96L416 96Q431 96 440 105 448 113 448 128L448 144 256 272 64 144 64 128ZM256 328L448 200 448 384Q448 416 416 416L96 416Q64 416 64 384L64 200 256 328Z" /></svg>
-                </p>
-                <p class="ms-2">Email: wambolecourant@yahoo.fr</p>
-              </div>
-              <div class="d-flex">
-                <p>
-                  <svg fill="orange" width="20px" height="20px" viewBox="0 0 24 24" version="UT1.2" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg"><path d="M17.657 5.304c-3.124-3.073-8.189-3.073-11.313 0-3.124 3.074-3.124 8.057 0 11.13l5.656 5.565 5.657-5.565c3.124-3.073 3.124-8.056 0-11.13zm-5.657 8.195c-.668 0-1.295-.26-1.768-.732-.975-.975-.975-2.561 0-3.536.472-.472 1.1-.732 1.768-.732s1.296.26 1.768.732c.975.975.975 2.562 0 3.536-.472.472-1.1.732-1.768.732z" /></svg>
-                </p>
-                <p class="ms-2">155 Charles Antagana Street , Yaounde-Cameroun</p>
-              </div>
-            </div>
-            <div className="foot-a">
-              <h3 className='display-5'>PACKAGES</h3>
-              <p>Package Bonheur</p>
-              <p>Package Classique</p>
-              <p>Package Prestige</p>
-              <p>Package Premium</p>
-              <p>Package Inoubliable</p>
 
-            </div>
+              <motion.div
+                className="stat-glow"
+                animate={{
+                  opacity: [0.3, 0.6, 0.3],
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </motion.div>
 
+            {/* CARD 2 - SATISFACTION */}
+            <motion.div
+              className="stat-card-3d"
+              initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+              whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+              transition={{
+                duration: 0.8,
+                delay: 0.4,
+                type: "spring",
+                stiffness: 100
+              }}
+              viewport={{ once: true }}
+              whileHover={{
+                scale: 1.1,
+                rotateY: 10,
+                boxShadow: "0 30px 60px rgba(139, 30, 63, 0.4)"
+              }}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <div className="stat-card-inner">
+                <div className="stat-front">
+                  <motion.div
+                    className="stat-icon-3d"
+                    animate={{
+                      y: [0, -15, 0],
+                      rotate: [0, 5, -5, 0]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: 0.5,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    ❤️
+                  </motion.div>
+                  <motion.div
+                    className="stat-number-3d"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.7, type: "spring", stiffness: 200 }}
+                  >
+                    100%
+                  </motion.div>
+                  <h3>Cœurs Touchés</h3>
+                  <p>Une émotion garantie à chaque fois</p>
+
+                  <motion.div
+                    className="stat-progress-bar"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "100%" }}
+                    transition={{ delay: 1, duration: 1.5, ease: "easeOut" }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="progress-fill"></div>
+                  </motion.div>
+                </div>
+                <div className="stat-back">
+                  <div className="stat-quote">
+                    "Chaque client repart avec un sourire et un souvenir"
+                  </div>
+                </div>
+              </div>
+
+              <motion.div
+                className="stat-glow"
+                animate={{
+                  opacity: [0.3, 0.6, 0.3],
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: 0.5,
+                  ease: "easeInOut"
+                }}
+              />
+            </motion.div>
+
+            {/* CARD 3 - DISPONIBILITÉ */}
+            <motion.div
+              className="stat-card-3d"
+              initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+              whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+              transition={{
+                duration: 0.8,
+                delay: 0.6,
+                type: "spring",
+                stiffness: 100
+              }}
+              viewport={{ once: true }}
+              whileHover={{
+                scale: 1.1,
+                rotateY: 10,
+                boxShadow: "0 30px 60px rgba(196, 160, 110, 0.4)"
+              }}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <div className="stat-card-inner">
+                <div className="stat-front">
+                  <motion.div
+                    className="stat-icon-3d"
+                    animate={{
+                      y: [0, -15, 0],
+                      rotate: [0, 5, -5, 0]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: 1,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    ⏰
+                  </motion.div>
+                  <motion.div
+                    className="stat-number-3d"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.9, type: "spring", stiffness: 200 }}
+                  >
+                    24/7
+                  </motion.div>
+                  <h3>Disponibilité</h3>
+                  <p>Vos rêves n'attendent pas</p>
+
+                  <motion.div
+                    className="pulse-circle"
+                    animate={{
+                      scale: [1, 1.5, 1],
+                      opacity: [0.7, 0, 0.7]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                </div>
+                <div className="stat-back">
+                  <div className="stat-quote">
+                    "La magie opère à toute heure, pour chaque urgence de bonheur"
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CARD 4 - EXPÉRIENCE */}
+            <motion.div
+              className="stat-card-3d"
+              initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+              whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+              transition={{
+                duration: 0.8,
+                delay: 0.8,
+                type: "spring",
+                stiffness: 100
+              }}
+              viewport={{ once: true }}
+              whileHover={{
+                scale: 1.1,
+                rotateY: 10,
+                boxShadow: "0 30px 60px rgba(139, 30, 63, 0.4)"
+              }}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <div className="stat-card-inner">
+                <div className="stat-front">
+                  <motion.div
+                    className="stat-icon-3d"
+                    animate={{
+                      y: [0, -15, 0],
+                      rotate: [0, 5, -5, 0]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: 1.5,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    📅
+                  </motion.div>
+                  <motion.div
+                    className="stat-number-3d"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 1.1, type: "spring", stiffness: 200 }}
+                  >
+                    5+
+                  </motion.div>
+                  <h3>Années d'Excellence</h3>
+                  <p>Un savoir-faire qui s'affine avec le temps</p>
+
+                  <div className="timeline-dots">
+                    {[1, 2, 3, 4, 5].map((dot, index) => (
+                      <motion.span
+                        key={dot}
+                        className="timeline-dot"
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{
+                          delay: 1.2 + (index * 0.1),
+                          type: "spring",
+                          stiffness: 200
+                        }}
+                        whileHover={{ scale: 1.5 }}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="stat-back">
+                  <div className="stat-quote">
+                    "5 ans à créer des étoiles dans les yeux"
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* PARTICLES INTERACTIVES */}
+          <div className="particles-container">
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="stat-particle"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  background: i % 3 === 0 ? "#c4a06e" :
+                    i % 3 === 1 ? "#8b1e3f" : "#fff"
+                }}
+                animate={{
+                  x: [0, Math.random() * 100 - 50],
+                  y: [0, Math.random() * 100 - 50],
+                  rotate: [0, 360],
+                  scale: [1, 1.5, 1]
+                }}
+                transition={{
+                  duration: Math.random() * 3 + 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: Math.random() * 2
+                }}
+              />
+            ))}
+          </div>
+
+          {/* CTA INTERACTIF */}
+          <motion.div
+            className="stats-cta"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="cta-bubble">
+              <motion.div
+                className="bubble-content"
+                animate={{
+                  scale: [1, 1.05, 1],
+                  rotate: [-1, 1, -1]
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <span className="bubble-icon">💫</span>
+                <h4>Ces chiffres ne sont que le début</h4>
+                <p>Votre histoire sera notre prochaine statistique</p>
+
+                <motion.button
+                  className="bubble-button"
+                  whileHover={{
+                    scale: 1.1,
+                    backgroundColor: "#c4a06e",
+                    color: "#0a0a0a"
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  animate={{
+                    boxShadow: [
+                      "0 0 20px rgba(196, 160, 110, 0.3)",
+                      "0 0 40px rgba(196, 160, 110, 0.6)",
+                      "0 0 20px rgba(196, 160, 110, 0.3)"
+                    ]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  Devenir une statistique heureuse
+                </motion.button>
+              </motion.div>
+
+              <div className="bubble-tail"></div>
+            </div>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* HISTOIRE DE L'ENTREPRISE */}
+      <section className="histoire-section" id="histoire">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-header-about"
+          >
+            <h2>Notre Voyage Magique</h2>
+            <p className="subtitle-about">De la première étincelle à la légende</p>
+          </motion.div>
+
+          <div className="timeline-luxe">
+            {timeline.map((item, index) => (
+              <motion.div
+                key={index}
+                className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                whileHover="hover"
+              >
+                <motion.div
+                  className="timeline-content"
+                  variants={cardHoverVariants}
+                >
+                  <div className="timeline-year">{item.year}</div>
+                  <div className="timeline-icon">{item.icon}</div>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </motion.div>
+                <div className="timeline-dot"></div>
+              </motion.div>
+            ))}
+            <div className="timeline-line"></div>
           </div>
         </div>
-        <p class="text-center text-warning mt-5">&copy;Copyright all rights reserved, 2023 DASCOM Ltd</p>
+      </section>
 
+      {/* VALEURS FONDAMENTALES */}
+      <section className="valeurs-section">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-header-about"
+          >
+            <h2>Notre ADN Créatif</h2>
+            <p className="subtitle-about">Les piliers de notre excellence</p>
+          </motion.div>
+
+          <motion.div
+            className="valeurs-grid-luxe"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {values.map((value, index) => (
+              <motion.div
+                key={index}
+                className="valeur-card-luxe"
+                variants={itemVariants}
+                whileHover="hover"
+                custom={index}
+              >
+                <motion.div
+                  className="valeur-icon-container"
+                  whileHover={{ rotate: 360, scale: 1.2 }}
+                  transition={{ duration: 0.6 }}
+                  style={{ color: value.color }}
+                >
+                  <span className="valeur-icon">{value.icon}</span>
+                </motion.div>
+
+                <motion.h3
+                  initial={{ opacity: 0.8 }}
+                  whileHover={{ opacity: 1, color: value.color }}
+                >
+                  {value.title}
+                </motion.h3>
+
+                <motion.p
+                  initial={{ opacity: 0.7 }}
+                  whileHover={{ opacity: 1 }}
+                >
+                  {value.description}
+                </motion.p>
+
+                <motion.div
+                  className="valeur-decoration"
+                  initial={{ width: "0%" }}
+                  whileHover={{ width: "100%" }}
+                  transition={{ duration: 0.4 }}
+                  style={{ backgroundColor: value.color }}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ÉQUIPE CRÉATIVE */}
+      <section className="equipe-section" id="equipe">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-header-about"
+          >
+            <h2>Les Artistes de l'Émotion</h2>
+            <p className="subtitle-about">La magie naît de nos passions réunies</p>
+          </motion.div>
+
+          <div className="equipe-grid-luxe">
+            {team.map((member, index) => (
+              <motion.div
+                key={index}
+                className="member-card-luxe"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2, duration: 0.8 }}
+                viewport={{ once: true }}
+                whileHover="hover"
+              >
+                <motion.div
+                  className="member-image-container"
+                  variants={cardHoverVariants}
+                >
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="member-image-luxe"
+                  />
+                  <div className="member-overlay">
+                    <div className="member-quote">"{member.quote}"</div>
+                  </div>
+                </motion.div>
+
+                <div className="member-info-luxe">
+                  <motion.h3
+                    initial={{ opacity: 0.8 }}
+                    whileHover={{ opacity: 1, color: "#c4a06e" }}
+                  >
+                    {member.name}
+                  </motion.h3>
+
+                  <motion.div
+                    className="member-role"
+                    whileHover={{ scale: 1.1 }}
+                  >
+                    {member.role}
+                  </motion.div>
+
+                  <motion.p
+                    className="member-specialty"
+                    initial={{ opacity: 0.7 }}
+                    whileHover={{ opacity: 1 }}
+                  >
+                    {member.specialty}
+                  </motion.p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PHILOSOPHIE */}
+      <section className="philosophy-section">
+        <div className="container">
+          <motion.div
+            className="philosophy-content"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          >
+            <motion.div
+              className="philosophy-quote"
+              animate={infiniteFloat}
+            >
+              "
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              Nous ne créons pas des événements.<br />
+              Nous créons des <span className="gold-text">émotions pures</span>,<br />
+              des <span className="gold-text">souvenirs vivants</span>,<br />
+              des <span className="gold-text">instants éternels</span>.
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              viewport={{ once: true }}
+              className="philosophy-author"
+            >
+              — Philosophie Drindsud
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA FINAL */}
+      <section className="cta-about-section">
+        <div className="container">
+          <motion.div
+            className="cta-about-content"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          >
+            <motion.h2
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              Prêt à Écrire Votre Propre Histoire Magique ?
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              Rejoignez les centaines de personnes qui nous ont fait confiance<br />
+              pour transformer leurs rêves en réalité.
+            </motion.p>
+
+            <motion.div
+              className="cta-buttons-final"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <motion.a
+                href="https://wa.me/237699377664"
+                className="btn-whatsapp-about"
+                whileHover={{ scale: 1.05, backgroundColor: "#128C7E" }}
+                whileTap={{ scale: 0.95 }}
+              >
+                📱 Parler à un Magicien
+              </motion.a>
+
+              <motion.a
+                href="#contact"
+                className="btn-portfolio"
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "transparent",
+                  borderColor: "#c4a06e",
+                  color: "#c4a06e"
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                🎬 Voir Nos Réalisations
+              </motion.a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+
+      {/* FOOTER LUXE */}
+      <footer className="footer-menu-luxe">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="footer-content-menu"
+          >
+            <div className="footer-grid-luxe">
+              <div className="footer-col">
+                <motion.h3
+                  whileHover={{ color: "#c4a06e" }}
+                >
+                  Drindsud Surprise Event
+                </motion.h3>
+                <p>Créateurs d'émotions magiques depuis 2020</p>
+                <p>📍 155 Rue Charles Atangana, Yaoundé</p>
+              </div>
+
+              <div className="footer-col">
+                <h3>Contact Rapide</h3>
+                <motion.a
+                  href="tel:+237699377664"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  📞 +237 699 377 664
+                </motion.a>
+                <motion.a
+                  href="mailto:wambolecourant@yahoo.fr"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  ✉️ wambolecourant@yahoo.fr
+                </motion.a>
+              </div>
+
+              <div className="footer-col">
+                <h3>Suivez la Magie</h3>
+                <div className="social-links-menu">
+                  {[
+                    { icon: '📘', label: 'Facebook', url: 'https://www.facebook.com/share/1KaSEYsuHb/' },
+                    { icon: '📸', label: 'Instagram', url: '#' },
+                    { icon: '💬', label: 'WhatsApp', url: 'https://wa.me/237699377664' },
+                    { icon: '🎥', label: 'YouTube', url: '#' }
+                  ].map((social, index) => (
+                    <motion.a
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="social-link-menu"
+                      whileHover={{
+                        scale: 1.3,
+                        rotate: 360,
+                        backgroundColor: "#c4a06e",
+                        color: "#0a0a0a"
+                      }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      {social.icon}
+                    </motion.a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <motion.div
+              className="footer-divider"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+            />
+
+            <motion.p
+              className="copyright-menu"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              © 2025 Drindsud Surprise Event — Tous droits réservés
+            </motion.p>
+          </motion.div>
+        </div>
       </footer>
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
-  )
-}
+  );
+};
 
-export default About
+export default About;
